@@ -27,11 +27,10 @@ import {
 import {selectUserId} from 'redux/slices/userSlice';
 import debitCardDetailsAPI from 'services/debitCardDetailsAPI';
 import CardView from './CardView';
+import Colors from 'utils/colors.utils';
+import {CARD_HEIGHT} from 'utils/constants.utils';
 
-const {width, height} = Dimensions.get('screen');
-
-const CARD_WIDTH = width - 48; //Ensures that the currency notation and the card's left end align just like the mock up
-const CARD_HEIGHT = 0.6 * CARD_WIDTH; // Aspect Ratio of the card is 0.6 [h/w]
+const {height} = Dimensions.get('screen');
 
 const renderSpendingLimitBar = (
   renderFlag,
@@ -70,7 +69,12 @@ const renderSpendingLimitBar = (
                 {currencyUnits}
                 {limitExhausted}
               </Text>
-              <Text style={{color: '#222222', fontWeight: '300', fontSize: 12}}>
+              <Text
+                style={{
+                  color: Colors.primaryDarkText,
+                  fontWeight: '300',
+                  fontSize: 12,
+                }}>
                 {' '}
                 | {currencyUnits}
                 {totalLimit}
@@ -100,10 +104,10 @@ const renderSpendingLimitBar = (
 };
 
 const renderButton = buttonState => {
-  if (buttonState == -1) {
+  if (buttonState === -1) {
     //No Button Present
     return <View style={{display: 'none'}} />;
-  } else if (buttonState == 0) {
+  } else if (buttonState === 0) {
     return (
       <View
         style={{
@@ -289,10 +293,10 @@ const PopUpCard = props => {
       case 'MenuItem#1':
         break;
       case 'MenuItem#2':
-        if (buttonState == 0) {
+        if (buttonState === 0) {
           //i.e. The Spending limit is not set ->  Open the Spending Limits screen
           props.props.navigation.push('SpendingLimit');
-        } else if (buttonState == 1) {
+        } else if (buttonState === 1) {
           //i.e. The Spending limit is already set, unset it
           manageLoadingIndicator(true, 'Removing Spending Limit');
           removeSpendingLimitApi();

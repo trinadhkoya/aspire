@@ -1,0 +1,21 @@
+const IMAGES = {
+  account: require('./Account.png'),
+  activeToggle: require('./activeToggle.png'),
+  adaptiveIcon: require('./adaptive-icon.png'),
+  arrowLeft: require('./arrowLeft.png'),
+  aspireLogo: require('./AspireLogo.png'),
+  credit: require('./Credit.png'),
+  eyeClosed: require('./eyeClosed.png'),
+  eyeOpen: require('./eyeOpen.png'),
+  home: require('./Home.png'),
+  payments: require('./Payments.png'),
+  pay: require('./pay.png'),
+  transfer: require('./Transfer-1.png'),
+  transfer2: require('./Transfer-2.png'),
+  transfer3: require('./Transfer-3.png'),
+  visa: require('./VisaLogo.png'),
+  user: require('./user.png'),
+  toggle: require('./toggle.png'),
+  toggle1: require('./toggle-1.png'),
+};
+export default IMAGES;

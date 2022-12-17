@@ -2,16 +2,14 @@ import React from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import PropTypes from 'prop-types';
 
-function Button(props) {
-  return (
-    <TouchableOpacity
-      activeOpacity={0.7}
-      onPress={props.onPress}
-      style={styles.touchableOpacityStyle}>
-      <Text style={styles.floatingButtonStyle}>{props.title}</Text>
-    </TouchableOpacity>
-  );
-}
+const Button = props => (
+  <TouchableOpacity
+    activeOpacity={0.7}
+    onPress={props.onPress}
+    style={[styles.touchableOpacityStyle, props.buttonStyle]}>
+    <Text style={[props.titleStyle]}>{props.title}</Text>
+  </TouchableOpacity>
+);
 
 Button.propTypes = {
   onPress: PropTypes.func,
@@ -53,10 +51,8 @@ const styles = StyleSheet.create({
     bottom: 30,
   },
   floatingButtonStyle: {
-    resizeMode: 'contain',
-    width: 50,
-    height: 50,
-    //backgroundColor:'black'
+    // width: 50,
+    // height: 50,
   },
 });
 
