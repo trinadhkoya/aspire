@@ -9,8 +9,8 @@ import {
   selectCardValidThru,
   selectNameOnCard,
   setCardNumberVisible,
-} from 'src/redux/slices/debitCardSlice';
-import Button from 'src/ui-kit/Button';
+} from 'redux/slices/debitCardSlice';
+import Button from 'ui-kit/Button';
 
 const {width} = Dimensions.get('screen');
 

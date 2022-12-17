@@ -23,8 +23,8 @@ import {
 } from 'redux/slices/appVariablesSlice';
 import {setUserId} from 'redux/slices/userSlice';
 import {useDispatch, useSelector, useStore} from 'react-redux';
-import debitCardDetailsAPI from 'src/services/debitCardDetailsAPI';
 import FloatingActionButton from 'ui-kit/FloatingActionButton';
+import debitCardDetailsAPI from 'services/debitCardDetailsAPI';
 
 const {width, height} = Dimensions.get('screen');
 
@@ -116,7 +116,7 @@ const DebitCardControlCenterScreen = props => {
       }),
     );
     manageLoadingIndicator(true, 'Fetching Debit Card Details');
-    cardDetailsApi(dummyUserIDsList[randomIdx]);
+    cardDetailsApi(dummyUserIDsList[randomIdx]).then(r => console.log(r));
   };
 
   useEffect(() => {

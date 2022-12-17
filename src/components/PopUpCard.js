@@ -18,14 +18,14 @@ import {
   selectWeeklySpendingLimitExhausted,
   setWeeklySpendingLimit,
   setWeeklySpendingLimitExhausted,
-} from 'src/redux/slices/debitCardSlice';
+} from 'redux/slices/debitCardSlice';
 import {
   selectAppColorSolid,
   setIsLoadingIndicatorDisplayed,
   setLoadingIndicatorText,
-} from 'src/redux/slices/appVariablesSlice';
-import {selectUserId} from 'src/redux/slices/userSlice';
-import debitCardDetailsAPI from 'src/services/debitCardDetailsAPI';
+} from 'redux/slices/appVariablesSlice';
+import {selectUserId} from 'redux/slices/userSlice';
+import debitCardDetailsAPI from 'services/debitCardDetailsAPI';
 import CardView from './CardView';
 
 const {width, height} = Dimensions.get('screen');
