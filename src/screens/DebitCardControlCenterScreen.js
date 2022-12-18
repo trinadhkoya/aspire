@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Image, SafeAreaView, StyleSheet, View} from 'react-native';
 import MenuBottomSheet from '../components/MenuBottomSheet';
 import TextElement from 'ui-kit/TextElement';
@@ -11,11 +11,18 @@ import IMAGES from 'assets';
 function DebitCardControlCenterScreen(props: {}) {
   let currency = 'INR';
   let availableBalance = '2000';
+  const [headerOccupiedSpace, setHeaderOccupiedSpace] = useState(
+    SCREEN_HEIGHT * 0.2,
+  );
+  const onLayout = event => {
+    const {height} = event.nativeEvent.layout;
+    setHeaderOccupiedSpace(height);
+  };
 
   return (
     <SafeAreaView style={styles.background}>
       <React.Fragment>
-        <View style={styles.container}>
+        <View style={styles.container} onLayout={onLayout}>
           <View style={styles.imgContainer}>
             <Image style={styles.brandLogo} source={IMAGES.brandLogo} />
           </View>
@@ -26,7 +33,10 @@ function DebitCardControlCenterScreen(props: {}) {
           <PriceBadge currency={currency} availableBalance={availableBalance} />
         </View>
       </React.Fragment>
-      <MenuBottomSheet props={props} />
+      <MenuBottomSheet
+        props={props}
+        headerOccupiedSpace={headerOccupiedSpace}
+      />
     </SafeAreaView>
   );
 }

@@ -28,7 +28,12 @@ import {selectUserId} from 'redux/slices/userSlice';
 import debitCardDetailsAPI from 'services/debitCardDetailsAPI';
 import CardView from './CardView';
 import Colors from 'utils/colors.utils';
-import {CARD_HEIGHT} from 'utils/constants.utils';
+import {
+  CARD_HEIGHT,
+  DEBIT_CARD_MENU_ITEMS,
+  SCREEN_HEIGHT,
+  userInfo,
+} from 'utils/constants.utils';
 
 const {height} = Dimensions.get('screen');
 
@@ -152,205 +157,44 @@ const createOneButtonAlert = (title, message) =>
     },
   ]);
 
+function MenuItem(props: {item: any}) {
+  return (
+    <View style={styles.menuItem}>
+      <Image
+        style={{width: 32}}
+        source={props.item.iconAssetUri}
+        resizeMode="contain"
+      />
+      <View style={{flexDirection: 'column', marginLeft: 12}}>
+        <Text style={styles.menuTitle}>{props.item.menuTitle}</Text>
+        <Text style={styles.menuSubtitle}>{props.item.menuSubtitle}</Text>
+      </View>
+      {renderButton(props.item.buttonState)}
+    </View>
+  );
+}
+
 const MenuBottomSheet = props => {
   const dispatchEvent = useDispatch();
+  const headerSpace = props.headerOccupiedSpace;
 
-  let spendingLimit = useSelector(selectWeeklySpendingLimit);
-  let spendingLimitExhausted = useSelector(selectWeeklySpendingLimitExhausted);
-  let cardNumber = useSelector(selectCardNumber);
-  let userId = useSelector(selectUserId);
-  let currencyUnits = useSelector(selectCurrencyUnits);
-  let isSpendingLimitSet = spendingLimit != null && spendingLimit > 0;
-  let appColorSolid = useSelector(selectAppColorSolid);
+  let spendingLimit = 40000;
+  let spendingLimitExhausted = false;
+  let cardNumber = userInfo.cardNumber;
+  let userId = userInfo.id;
+  let currencyUnits = userInfo.currencyUnits;
+  let isSpendingLimitSet = true;
+  let appColorSolid = Colors.primaryColor;
 
-  let menuArr = [
-    {
-      key: 'MenuItem#1', // A unique key to supress the warning and optimize changes
-      menuTitle: 'Top-up account', // The Title of the menu Item
-      menuSubtitle: 'Deposit money to your account to use with card', // The subtitle of the menu Item
-      iconAssetUri: require('../assets/insight.png'), // Uri for the icon
-      buttonState: -1, //A parameter that suggest about the radio button -1: Hidden; 0: Button inactive; 1: Button active
-      itemEnabled: false, //A Parameter that tells if the menu item is enabled, therefore touchable opacity behavior
-    },
-    {
-      key: 'MenuItem#2', // A unique key to supress the warning and optimize changes
-      menuTitle: 'Weekly spending limit', // The Title of the menu Item
-      menuSubtitle: isSpendingLimitSet
-        ? 'Your weekly spending limit is ' + currencyUnits + ' ' + spendingLimit
-        : "You haven't set any spending limit on card", // The subtitle of the menu Item
-      iconAssetUri: require('../assets/Transfer-2.png'), // Uri for the icon
-      buttonState: isSpendingLimitSet ? 1 : 0, //A parameter that suggest about the radio button -1: Hidden; 0: Button inactive; 1: Button active
-      itemEnabled: true, //A Parameter that tells if the menu item is enabled, therefore touchable opacity behavior
-    },
-    {
-      key: 'MenuItem#3', // A unique key to supress the warning and optimize changes
-      menuTitle: 'Freeze card', // The Title of the menu Item
-      menuSubtitle: 'Your debit card is currently active', // The subtitle of the menu Item
-      iconAssetUri: require('../assets/Transfer-3.png'), // Uri for the icon
-      buttonState: 0, //A parameter that suggest about the radio button -1: Hidden; 0: Button inactive; 1: Button active
-      itemEnabled: false, //A Parameter that tells if the menu item is enabled, therefore touchable opacity behavior
-    },
-    {
-      key: 'MenuItem#4', // A unique key to supress the warning and optimize changes
-      menuTitle: 'Get a new card', // The Title of the menu Item
-      menuSubtitle: 'This deactivates your current debit card', // The subtitle of the menu Item
-      iconAssetUri: require('../assets/Transfer-1.png'), // Uri for the icon
-      buttonState: -1, //A parameter that suggest about the radio button -1: Hidden; 0: Button inactive; 1: Button active
-      itemEnabled: false, //A Parameter that tells if the menu item is enabled, therefore touchable opacity behavior
-    },
-    {
-      key: 'MenuItem#5', // A unique key to supress the warning and optimize changes
-      menuTitle: 'Deactivated cards', // The Title of the menu Item
-      menuSubtitle: 'Your previously deactivated cards', // The subtitle of the menu Item
-      iconAssetUri: require('../assets/Transfer.png'), // Uri for the icon
-      buttonState: -1, //A parameter that suggest about the radio button -1: Hidden; 0: Button inactive; 1: Button active
-      itemEnabled: false, //A Parameter that tells if the menu item is enabled, therefore touchable opacity behavior
-    },
-  ];
-
-  const manageLoadingIndicator = (displayFlag, message) => {
-    dispatchEvent(
-      setIsLoadingIndicatorDisplayed({
-        isLoadingIndicatorDisplayed: displayFlag,
-      }),
-    );
-    dispatchEvent(
-      setLoadingIndicatorText({
-        loadingIndicatorText: message,
-      }),
-    );
-  };
-
-  const removeSpendingLimitApi = async () => {
-    const params = {
-      userId: userId, //User ID for which Spending limit is being set
-      cardNumber: cardNumber, //Card Number for which the Spending Limit is being set
-    };
-
-    //MARK: this line is used to contact one of the two mocked dumb APIs that return either success(90%) or failure(10%) in changing the limit
-    let randomizedSucessfulApi =
-      Math.floor(Math.random() * 100) < 10
-        ? '/removeSpendingLimitf'
-        : '/removeSpendingLimits';
-    console.log('API CALL : ' + randomizedSucessfulApi);
-    console.log(params);
-
-    const response = debitCardDetailsAPI
-      .post(randomizedSucessfulApi, params)
-      .then(response => {
-        manageLoadingIndicator(false, '');
-        // Response is designed to be in the form of
-        // For: setSpendingLimitf -> {success: "false", reason: "You are not allowed to remove spending limit. Contact your administrator", limitExhausted: -1}    //The setting/removal failed at backend due to a restriction by card manager
-        // For: setSpendingLimits -> {success: "true", reason: "", limitExhausted: <numericalValue>} //Limit set successfully
-        // setIndicatorDisplayed(false);
-        if (response.status != 200) {
-          return createOneButtonAlert(
-            'Error',
-            'Error Encountered in Removing Spending Limit',
-          );
-        } else {
-          console.log(response.data);
-          if (response.data.success != null) {
-            if (response.data.success == 'true') {
-              dispatchEvent(
-                setWeeklySpendingLimit({
-                  weeklySpendingLimit: -1,
-                }),
-              );
-              dispatchEvent(
-                setWeeklySpendingLimitExhausted({
-                  weeklySpendingLimitExhausted: -1,
-                }),
-              );
-            } else if (
-              response.data.success == 'false' &&
-              response.data.reason != null &&
-              response.data.reason != ''
-            ) {
-              return createOneButtonAlert('Error', response.data.reason);
-            }
-          }
-        }
-      })
-      .catch(error => {
-        console.log(response);
-        console.log(error);
-        manageLoadingIndicator(false, '');
-        // setIndicatorDisplayed(false);
-        return createOneButtonAlert(
-          'Error',
-          'Error Encountered in Removing Spending Limit',
-        );
-      });
-  };
-
-  const loadMenuItem = (menuKey, buttonState) => {
-    switch (menuKey) {
-      case 'MenuItem#1':
-        break;
-      case 'MenuItem#2':
-        if (buttonState === 0) {
-          //i.e. The Spending limit is not set ->  Open the Spending Limits screen
-          props.props.navigation.push('SpendingLimit');
-        } else if (buttonState === 1) {
-          //i.e. The Spending limit is already set, unset it
-          manageLoadingIndicator(true, 'Removing Spending Limit');
-          removeSpendingLimitApi();
-        }
-
-        break;
-      case 'MenuItem#3':
-        break;
-      case 'MenuItem#4':
-        break;
-      case 'MenuItem#5':
-        break;
-      default:
-        //Do Nothing
-        return;
-    }
-  };
-
-  const totalMenuItemHeight = isSpendingLimitSet
-    ? CARD_HEIGHT + 32 - 90 + 65 + 63 * menuArr.length + 243
-    : CARD_HEIGHT + 63 * menuArr.length + 243;
-  //CARD_HEIGHT - > height of Debit Card
-  //32 -> Height of Show/Hide button
-  //-90-> margin adjustment of the card
-  //63 -> Height + Margin of each menu item
-  //65 -> Height + Margin of bar item
-  //243-> Top Transparent view
-
-  //Calculating padding below menu items
-  const extraPaddingNeeded =
-    totalMenuItemHeight > height - 40 ? 60 : height - 40 - totalMenuItemHeight;
   return (
     <SafeAreaView style={{top: 0, bottom: 0, ...styles.behind}}>
       <FlatList
-        style={{
-          position: 'absolute',
-          top: 0,
-          bottom: 0,
-          backgroundColor: 'transparent',
-          width: '100%',
-          height: height - 40, //-40 for tab bar
-          flex: 1,
-        }}
+        style={[styles.innerContainer, {top: headerSpace + 44}]}
         bounces={true}
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={
           <View>
-            <View style={{alignItems: 'center'}}>
-              <View
-                style={{
-                  backgroundColor: 'transparent',
-                  flex: 1,
-                  height: height * 0.35,
-                }}>
-                {/* A view that stays transparent */}
-              </View>
-              <CardView />
-            </View>
+            <CardView userInfo={userInfo} />
             {renderSpendingLimitBar(
               isSpendingLimitSet,
               spendingLimitExhausted,
@@ -360,43 +204,16 @@ const MenuBottomSheet = props => {
             )}
           </View>
         }
-        ListFooterComponent={
-          <View
-            style={{
-              backgroundColor: 'white',
-              height: extraPaddingNeeded,
-              marginTop: -1,
-            }}
-          />
-          //Padding at bottom
-        }
-        data={menuArr}
+        data={DEBIT_CARD_MENU_ITEMS}
         renderItem={({item}) => {
           return (
             <View
               style={{backgroundColor: 'white', zIndex: -100, marginTop: -1}}>
-              <View style={{marginLeft: 24, marginRight: 24}}>
-                <TouchableOpacity
-                  onPress={() => {
-                    loadMenuItem(item.key, item.buttonState);
-                  }}
-                  disabled={!item.itemEnabled}>
-                  <View style={styles.menuItem}>
-                    <Image
-                      style={{width: 32}}
-                      source={item.iconAssetUri}
-                      resizeMode="contain"
-                    />
-                    <View style={{flexDirection: 'column', marginLeft: 12}}>
-                      <Text style={styles.menuTitle}>{item.menuTitle}</Text>
-                      <Text style={styles.menuSubtitle}>
-                        {item.menuSubtitle}
-                      </Text>
-                    </View>
-                    {renderButton(item.buttonState)}
-                  </View>
+              <>
+                <TouchableOpacity disabled={!item.itemEnabled}>
+                  <MenuItem item={item} />
                 </TouchableOpacity>
-              </View>
+              </>
             </View>
           );
         }}
@@ -414,7 +231,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     position: 'absolute',
     top: 0,
-    bottom: 0,
+    bottom: SCREEN_HEIGHT * 0.5,
     backgroundColor: 'transparent',
     width: '100%',
     flex: 1,
@@ -443,5 +260,14 @@ const styles = StyleSheet.create({
     fontWeight: '300',
     fontSize: 12,
     color: 'rgba(34,34,34,0.4)',
+  },
+  innerContainer: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    backgroundColor: 'transparent',
+    width: '100%',
+    height: height - 40, //-40 for tab bar
+    flex: 1,
   },
 });

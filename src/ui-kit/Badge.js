@@ -29,16 +29,17 @@ Badge.defaultProps = {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.primaryColor,
+    backgroundColor: Colors.white,
     justifyContent: 'center',
     borderTopEndRadius: 5,
-    paddingVertical: 10,
+    padding: 10,
   },
   btnText: {
-    color: Colors.primaryDarkText,
+    color: Colors.primaryTextColor,
     fontSize: fontSize.small,
     alignItems: 'flex-start',
     fontFamily: font.DemiBold,
+    alignSelf: 'center',
   },
 });
 export default Badge;

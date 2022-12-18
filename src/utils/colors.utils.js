@@ -5,6 +5,8 @@ const Colors = {
   primaryColor: '#01D167',
   secondaryColor: '#0C365A',
 
+  primaryTextColor: '#01D167',
+
   blue: {
     dark: '#25345F',
     light: '#325BAF',
