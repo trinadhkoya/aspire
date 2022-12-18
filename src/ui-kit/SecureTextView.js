@@ -2,6 +2,7 @@ import {View, StyleSheet} from 'react-native';
 import Circle from 'ui-kit/Circle';
 import React from 'react';
 import PropTypes from 'prop-types';
+import {font as Font} from 'utils/typefaces.utils';
 
 const SecureTextView = props => {
   return (
@@ -22,7 +23,9 @@ SecureTextView.defaultProps = {
 const styles = StyleSheet.create({
   secureDigitsView: {
     flexDirection: 'row',
-    marginRight: 20,
+    letterSpacing: 3.5,
+    fontFamily: Font.DemiBold,
+    marginRight: 24,
   },
 });
 export default SecureTextView;

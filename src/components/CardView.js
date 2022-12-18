@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch, useSelector, useStore} from 'react-redux';
 import {selectAppColorSolid} from 'redux/slices/appVariablesSlice';
 import {
   selectCardCVV,
@@ -16,24 +16,25 @@ import {
   CARD_WIDTH,
   labels,
   SCREEN_WIDTH,
+  userInfo,
 } from 'utils/constants.utils';
 import IMAGES from 'assets';
 import CardNumberView from 'components/CardNumberView';
 import Badge from 'ui-kit/Badge';
 import {scale} from 'utils/screen.utils';
-import { font, font as Font, fontSize } from "utils/typefaces.utils";
+import {font, font as Font, fontSize} from 'utils/typefaces.utils';
 
 const CardView = () => {
-  const dispatch = useDispatch();
-  const isCardDataVisible = useSelector(selectCardNumberVisible); //selectCardNumberVisible;
-  const cardNumber = useSelector(selectCardNumber); //selectCardNumber;
-  const cardValidThru = useSelector(selectCardValidThru); //selectCardValidThru;
-  const cardCVV = useSelector(selectCardCVV); //selectCardCVV;
-  const nameOnCard = useSelector(selectNameOnCard); //selectNameOnCard;
-  const appColorSolid = useSelector(selectAppColorSolid);
+  const cardNumber = userInfo.cardNumber; //selectCardNumber;
+  const cardValidThru = userInfo.cardValidThru; //selectCardValidThru;
+  const cardCVV = userInfo.cardCVV; //selectCardCVV;
+  const nameOnCard = userInfo.nameOnCard; //selectNameOnCard;
+  const appColorSolid = Colors.primaryColor;
+
+  const [isCardDataVisible, setIsCardNumberVisible] = useState(true);
 
   const onToggle = () => {
-    dispatch(setCardNumberVisible({cardNumberVisible: !isCardDataVisible}));
+    setIsCardNumberVisible(!isCardDataVisible);
   };
   const badgeTitle = isCardDataVisible
     ? labels.hideCardNumber
@@ -65,8 +66,8 @@ const CardView = () => {
             <View style={styles.cardElementsView}>
               <View style={styles.cardNumberView}>
                 <CardNumberView
-                  cardDisplayFlag={isCardDataVisible}
-                  cardNumber={cardNumber}
+                  shouldDisplayCardDetails={isCardDataVisible}
+                  cardNum={cardNumber}
                 />
               </View>
               <View style={{flexDirection: 'row'}}>

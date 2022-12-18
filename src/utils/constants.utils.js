@@ -13,3 +13,15 @@ export const labels = {
   debitCard: 'Debit Card',
   availableBalance: 'Available Balance',
 };
+
+export const userInfo = {
+  cardNumberVisible: false,
+  cardNumber: '1234567812345678',
+  cardValidThru: '10/28',
+  cardCVV: '666',
+  nameOnCard: 'Trinadh Koya',
+  availableBalance: '1,000,000',
+  currencyUnits: 'WVD',
+  weeklySpendingLimit: -1,
+  weeklySpendingLimitExhausted: -1,
+};

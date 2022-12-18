@@ -4,31 +4,32 @@ import React from 'react';
 import Colors from 'utils/colors.utils';
 import {CARD_HEIGHT, CARD_WIDTH} from 'utils/constants.utils';
 import PropTypes from 'prop-types';
-import { font as Font, fontSize } from "utils/typefaces.utils";
+import {font as Font, fontSize} from 'utils/typefaces.utils';
+import TextElement from 'ui-kit/TextElement';
 
-const CardNumberView = ({cardDisplayFlag, cardNumber}) => {
-  if (!(cardDisplayFlag != null && cardNumber != null)) {
+const CardNumberView = ({shouldDisplayCardDetails, cardNum}) => {
+  if (!(shouldDisplayCardDetails != null && cardNum != null)) {
     return <View style={{display: 'none'}} />;
   }
 
   return (
     <View style={styles.secureDigitsView}>
-      {cardDisplayFlag ? (
-        <Text style={styles.secureDigits}>{cardNumber.substring(0, 4)}</Text>
+      {shouldDisplayCardDetails ? (
+        <Text style={styles.secureDigits}>{cardNum.substring(0, 4)}</Text>
       ) : (
         <SecureTextView size={4} />
       )}
-      {cardDisplayFlag ? (
-        <Text style={styles.secureDigits}>{cardNumber.substring(0, 4)}</Text>
+      {shouldDisplayCardDetails ? (
+        <Text style={styles.secureDigits}>{cardNum.substring(0, 4)}</Text>
       ) : (
         <SecureTextView size={4} />
       )}
-      {cardDisplayFlag ? (
-        <Text style={styles.secureDigits}>{cardNumber.substring(0, 4)}</Text>
+      {shouldDisplayCardDetails ? (
+        <Text style={styles.secureDigits}>{cardNum.substring(0, 4)}</Text>
       ) : (
         <SecureTextView size={4} />
       )}
-      <Text style={styles.secureDigits}>{cardNumber.substring(0, 4)}</Text>
+      <TextElement h3 h3Style={styles.secureDigits}>{cardNum.substring(0, 4)}</TextElement>
     </View>
   );
 };
@@ -126,22 +127,21 @@ const styles = StyleSheet.create({
   secureDigits: {
     color: 'white',
     fontSize: fontSize.regular,
-    width: 50,
-    letterSpacing: 3,
+    letterSpacing: 3.5,
     fontFamily: Font.DemiBold,
+    marginRight: 24,
   },
   secureDigitsView: {
     flexDirection: 'row',
-    marginRight: 20,
   },
 });
 CardNumberView.propTypes = {
-  cardDisplayFlag: PropTypes.bool,
-  cardNumber: PropTypes.string,
+  shouldDisplayCardDetails: PropTypes.bool,
+  cardNum: PropTypes.string,
 };
 CardNumberView.defaultProps = {
-  cardDisplayFlag: false,
-  cardNumber: '',
+  shouldDisplayCardDetails: false,
+  cardNum: '',
 };
 
 export default CardNumberView;
