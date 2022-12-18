@@ -8,12 +8,15 @@ import PriceBadge from 'ui-kit/PriceBadge';
 import {labels, SCREEN_HEIGHT, SCREEN_WIDTH} from 'utils/constants.utils';
 import IMAGES from 'assets';
 
-function DebitCardControlCenterScreen(props: {}) {
-  let currency = 'INR';
+function DebitCardScreenContainer(props) {
+  let currency = 'S$';
   let availableBalance = '2000';
+
   const [headerOccupiedSpace, setHeaderOccupiedSpace] = useState(
     SCREEN_HEIGHT * 0.2,
   );
+
+  /** Calculate how much space top section occupied to place card view */
   const onLayout = event => {
     const {height} = event.nativeEvent.layout;
     setHeaderOccupiedSpace(height);
@@ -33,15 +36,12 @@ function DebitCardControlCenterScreen(props: {}) {
           <PriceBadge currency={currency} availableBalance={availableBalance} />
         </View>
       </React.Fragment>
-      <MenuBottomSheet
-        props={props}
-        headerOccupiedSpace={headerOccupiedSpace}
-      />
+      <MenuBottomSheet {...props} headerOccupiedSpace={headerOccupiedSpace} />
     </SafeAreaView>
   );
 }
 
-export default DebitCardControlCenterScreen;
+export default DebitCardScreenContainer;
 
 const styles = StyleSheet.create({
   container: {
@@ -72,6 +72,7 @@ const styles = StyleSheet.create({
   debitCardLabel: {
     color: Colors.white,
     fontFamily: font.Bold,
+    paddingBottom: 24,
   },
   brandLogo: {
     width: 25,

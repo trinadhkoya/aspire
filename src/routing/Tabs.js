@@ -3,7 +3,7 @@ import {Image, StyleSheet, Text, View} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {useSelector} from 'react-redux';
 import {selectAppColorSolid} from 'redux/slices/appVariablesSlice';
-import DebitCardControlCenterScreen from 'screens/DebitCardControlCenterScreen';
+import DebitCardScreenContainer from 'screens/DebitCardScreenContainer';
 
 const Tab = createBottomTabNavigator();
 
@@ -21,7 +21,7 @@ const Tabs = () => {
       {/* Assigning all tabs to redirect to DebitControlCenterScreen since it is the only screen shared with us*/}
       <Tab.Screen
         name="Home"
-        component={DebitCardControlCenterScreen}
+        component={DebitCardScreenContainer}
         listeners={{
           tabPress: e => {
             // Prevent default action since this item is disabled
@@ -51,7 +51,7 @@ const Tabs = () => {
       />
       <Tab.Screen
         name="Debit Card"
-        component={DebitCardControlCenterScreen}
+        component={DebitCardScreenContainer}
         options={{
           tabBarIcon: ({focused}) => (
             <View

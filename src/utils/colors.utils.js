@@ -14,7 +14,7 @@ const Colors = {
 
   grey: {
     light: 'rgba(0, 0, 0, 0.08)',
-    dark: 'rgba(0, 0, 0, 0.16)',
+    dark: 'rgba(34, 34, 34, 1)',
     semiDark: 'rgba(0, 0, 0, 0.12)',
     medium: 'rgba(0, 0, 0, 0.08)',
   },

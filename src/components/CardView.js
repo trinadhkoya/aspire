@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, View} from 'react-native';
 import Colors from 'utils/colors.utils';
 import {CARD_HEIGHT, CARD_WIDTH, labels} from 'utils/constants.utils';
 import IMAGES from 'assets';
@@ -7,6 +7,7 @@ import CardNumberView from 'components/CardNumberView';
 import Badge from 'ui-kit/Badge';
 import {scale} from 'utils/screen.utils';
 import {font, font as Font, fontSize} from 'utils/typefaces.utils';
+import TextElement from 'ui-kit/TextElement';
 
 const CardView = ({userInfo}) => {
   const cardNumber = userInfo.cardNumber;
@@ -39,7 +40,9 @@ const CardView = ({userInfo}) => {
         <View style={styles.cardView}>
           <View style={styles.cardContent}>
             <View style={styles.cardHolderNameView}>
-              <Text style={styles.cardHolderName}>{nameOnCard}</Text>
+              <TextElement h3 h3Style={styles.cardHolderName}>
+                {nameOnCard}
+              </TextElement>
             </View>
             <View style={styles.cardElementsView}>
               <View style={styles.cardNumberView}>
@@ -48,11 +51,13 @@ const CardView = ({userInfo}) => {
                   cardNum={cardNumber}
                 />
               </View>
-              <View style={{flexDirection: 'row'}}>
-                <Text style={styles.validityView}>Thru: {cardValidThru}</Text>
-                <Text style={styles.expiryView}>
+              <View style={styles.section3}>
+                <TextElement h4 h4Style={styles.validityView}>
+                  Thru: {cardValidThru}
+                </TextElement>
+                <TextElement h4 h4Style={styles.expiryView}>
                   CVV: {isCardNumVisible ? cardCVV : '***'}
-                </Text>
+                </TextElement>
               </View>
             </View>
           </View>
@@ -170,4 +175,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   cardView: {height: CARD_HEIGHT - 90},
+  section3: {
+    flexDirection: 'row',
+  },
 });

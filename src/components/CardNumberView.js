@@ -8,7 +8,10 @@ import {font as Font, fontSize} from 'utils/typefaces.utils';
 import TextElement from 'ui-kit/TextElement';
 
 const CardNumberView = ({shouldDisplayCardDetails, cardNum}) => {
-  if (!(shouldDisplayCardDetails != null && cardNum != null)) {
+  if (
+    typeof shouldDisplayCardDetails !== 'boolean' ||
+    typeof cardNum !== 'string'
+  ) {
     return <View style={{display: 'none'}} />;
   }
 
@@ -29,7 +32,9 @@ const CardNumberView = ({shouldDisplayCardDetails, cardNum}) => {
       ) : (
         <SecureTextView size={4} />
       )}
-      <TextElement h3 h3Style={styles.secureDigits}>{cardNum.substring(0, 4)}</TextElement>
+      <TextElement h3 h3Style={styles.secureDigits}>
+        {cardNum.substring(0, 4)}
+      </TextElement>
     </View>
   );
 };

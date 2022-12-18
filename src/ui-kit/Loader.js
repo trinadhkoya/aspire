@@ -1,30 +1,28 @@
 import React from 'react';
-import {ActivityIndicator, StyleSheet, Text, View} from 'react-native';
-import {useSelector} from 'react-redux';
-import {
-  selectIsLoadingIndicatorDisplayed,
-  selectLoadingIndicatorText,
-} from 'redux/slices/appVariablesSlice';
+import {ActivityIndicator, StyleSheet, View} from 'react-native';
+import Colors from 'utils/colors.utils';
+import TextElement from 'ui-kit/TextElement';
+import PropTypes from 'prop-types';
 
-const Loader = () => {
-  const isLoadingIndicatorDisplayed = useSelector(
-    selectIsLoadingIndicatorDisplayed,
-  );
-  const loadingIndicatorText = useSelector(selectLoadingIndicatorText);
-
-  return (
-    <View
-      style={
-        isLoadingIndicatorDisplayed ? styles.loadingOverlay : {display: 'none'}
-      }>
-      <ActivityIndicator size="large" color="#000" />
-      <Text style={{textAlign: 'center', fontSize: 15, fontWeight: '700'}}>
-        {loadingIndicatorText}
-      </Text>
-    </View>
-  );
+const Loader = ({isLoading, loadingIndicatorText}) => {
+  if (isLoading) {
+    return (
+      <View style={styles.loadingOverlay}>
+        <ActivityIndicator size="large" color={Colors.black} />
+        <TextElement h3>{loadingIndicatorText}</TextElement>
+      </View>
+    );
+  }
+  return <></>;
 };
-
+Loader.propTypes = {
+  loadingIndicatorText: PropTypes.string,
+  isLoading: PropTypes.bool,
+};
+Loader.defaultProps = {
+  loadingIndicatorText: 'Loading...',
+  isLoading: false,
+};
 export default Loader;
 
 const styles = StyleSheet.create({

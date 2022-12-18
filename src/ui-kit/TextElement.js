@@ -14,6 +14,7 @@ const TextElement = props => {
     h2,
     h3,
     h4,
+    h5,
     h1Style,
     h2Style,
     h3Style,
@@ -79,8 +80,16 @@ TextElement.defaultProps = {
   h2Style: {
     fontFamily: font.Bold,
   },
-  h3Style: {},
-  h4Style: {},
+  h3Style: {
+    fontFamily: font.Regular,
+    fontSize: 14,
+    color: Colors.black,
+  },
+  h4Style: {
+    fontFamily: font.Medium,
+    fontSize: fontSize.small,
+    color: Colors.black,
+  },
   h5Style: {},
   children: '',
 };

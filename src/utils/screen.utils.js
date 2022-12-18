@@ -47,7 +47,7 @@ export const normalize = size => {
     if (deviceHeight >= 667 && deviceHeight <= 735) {
       return size * 1.15;
     }
-    // older phablets
+    // older alphabets
     return size * 1.25;
   }
 
@@ -102,4 +102,3 @@ export const normalize = size => {
 export const s = scale;
 export const vs = verticalScale;
 export const ms = moderateScale;
-export const mvs = moderateVerticalScale;

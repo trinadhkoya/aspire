@@ -1,5 +1,4 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
 import {Provider} from 'react-redux';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {NavigationContainer} from '@react-navigation/native';
@@ -12,11 +11,10 @@ export default function App() {
     <Provider store={store}>
       <NavigationContainer>
         <SafeAreaProvider>
-          <Loader />
+          <Loader isLoading={false} />
           <NavStack />
         </SafeAreaProvider>
       </NavigationContainer>
     </Provider>
   );
 }
-

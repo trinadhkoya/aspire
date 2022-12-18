@@ -12,6 +12,7 @@ export const labels = {
   showCardNumber: 'Show card number',
   debitCard: 'Debit Card',
   availableBalance: 'Available Balance',
+  debitCardSpendingLimit: 'Debit Card Spending Limit',
 };
 
 export const userInfo = {
@@ -21,57 +22,57 @@ export const userInfo = {
   cardCVV: '666',
   nameOnCard: 'Trinadh Koya',
   availableBalance: '1,000,000',
-  currencyUnits: 'WVD',
+  currencyUnits: 'S$',
   weeklySpendingLimit: -1,
   weeklySpendingLimitExhausted: -1,
-  id:1
+  id: 1,
 };
 
-let isSpendingLimitSet = false;
-let currencyUnits = 'INR';
-let spendingLimit = 40000;
+const isSpendingLimitSet = false;
+const currencyUnits = 'S$';
+const spendingLimit = 40000;
 
 export const DEBIT_CARD_MENU_ITEMS = [
   {
-    key: 'MenuItem#1', // A unique key to supress the warning and optimize changes
-    menuTitle: 'Top-up account', // The Title of the menu Item
-    menuSubtitle: 'Deposit money to your account to use with card', // The subtitle of the menu Item
-    iconAssetUri: require('../assets/insight.png'), // Uri for the icon
-    buttonState: -1, //A parameter that suggest about the radio button -1: Hidden; 0: Button inactive; 1: Button active
-    itemEnabled: false, //A Parameter that tells if the menu item is enabled, therefore touchable opacity behavior
+    key: '1',
+    menuTitle: 'Top-up account',
+    menuSubtitle: 'Deposit money to your account to use with card',
+    iconAssetUri: require('../assets/insight.png'),
+    buttonState: -1,
+    itemEnabled: false,
   },
   {
-    key: 'MenuItem#2', // A unique key to supress the warning and optimize changes
-    menuTitle: 'Weekly spending limit', // The Title of the menu Item
+    key: '2',
+    menuTitle: 'Weekly spending limit',
     menuSubtitle: isSpendingLimitSet
       ? 'Your weekly spending limit is ' + currencyUnits + ' ' + spendingLimit
-      : "You haven't set any spending limit on card", // The subtitle of the menu Item
-    iconAssetUri: require('../assets/Transfer-2.png'), // Uri for the icon
-    buttonState: isSpendingLimitSet ? 1 : 0, //A parameter that suggest about the radio button -1: Hidden; 0: Button inactive; 1: Button active
-    itemEnabled: true, //A Parameter that tells if the menu item is enabled, therefore touchable opacity behavior
+      : "You haven't set any spending limit on card",
+    iconAssetUri: require('../assets/Transfer-2.png'),
+    buttonState: isSpendingLimitSet ? 1 : 0,
+    itemEnabled: true,
   },
   {
-    key: 'MenuItem#3', // A unique key to supress the warning and optimize changes
-    menuTitle: 'Freeze card', // The Title of the menu Item
-    menuSubtitle: 'Your debit card is currently active', // The subtitle of the menu Item
-    iconAssetUri: require('../assets/Transfer-3.png'), // Uri for the icon
-    buttonState: 0, //A parameter that suggest about the radio button -1: Hidden; 0: Button inactive; 1: Button active
-    itemEnabled: false, //A Parameter that tells if the menu item is enabled, therefore touchable opacity behavior
+    key: '3',
+    menuTitle: 'Freeze card',
+    menuSubtitle: 'Your debit card is currently active',
+    iconAssetUri: require('../assets/Transfer-3.png'),
+    buttonState: 0,
+    itemEnabled: false,
   },
   {
-    key: 'MenuItem#4', // A unique key to supress the warning and optimize changes
-    menuTitle: 'Get a new card', // The Title of the menu Item
-    menuSubtitle: 'This deactivates your current debit card', // The subtitle of the menu Item
-    iconAssetUri: require('../assets/Transfer-1.png'), // Uri for the icon
-    buttonState: -1, //A parameter that suggest about the radio button -1: Hidden; 0: Button inactive; 1: Button active
-    itemEnabled: false, //A Parameter that tells if the menu item is enabled, therefore touchable opacity behavior
+    key: '4',
+    menuTitle: 'Get a new card',
+    menuSubtitle: 'This deactivates your current debit card',
+    iconAssetUri: require('../assets/Transfer-1.png'),
+    buttonState: -1,
+    itemEnabled: false,
   },
   {
-    key: 'MenuItem#5', // A unique key to supress the warning and optimize changes
-    menuTitle: 'Deactivated cards', // The Title of the menu Item
-    menuSubtitle: 'Your previously deactivated cards', // The subtitle of the menu Item
-    iconAssetUri: require('../assets/Transfer.png'), // Uri for the icon
-    buttonState: -1, //A parameter that suggest about the radio button -1: Hidden; 0: Button inactive; 1: Button active
-    itemEnabled: false, //A Parameter that tells if the menu item is enabled, therefore touchable opacity behavior
+    key: '5',
+    menuTitle: 'Deactivated cards',
+    menuSubtitle: 'Your previously deactivated cards',
+    iconAssetUri: require('../assets/Transfer.png'),
+    buttonState: -1,
+    itemEnabled: false,
   },
 ];
