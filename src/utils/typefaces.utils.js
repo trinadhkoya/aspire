@@ -6,6 +6,7 @@ const font = {
 };
 const fontSize = {
   small: 12,
+  extraSmall: 9,
   medium: 13,
   regular: 14,
   large: 22,

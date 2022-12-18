@@ -23,6 +23,7 @@ import {
 import debitCardDetailsAPI from '../services/debitCardDetailsAPI';
 import {selectUserId} from 'redux/slices/userSlice';
 import Button from 'ui-kit/Button';
+import Colors from "utils/colors.utils";
 
 const {width, height} = Dimensions.get('screen');
 
@@ -30,10 +31,7 @@ const SpendingLimitBottomComponent = props => {
   let [number, onChangeNumber] = useState(null);
   let [isSaveButtonActive, setIsSaveButtonActive] = useState(false);
 
-  const dispatchEvent = useDispatch();
   const currencyUnits = useSelector(selectCurrencyUnits);
-  const cardNumber = useSelector(selectCardNumber);
-  let userId = useSelector(selectUserId);
   let appColorSolid = useSelector(selectAppColorSolid);
   const presetValues = [5000, 10000, 20000];
 
@@ -46,105 +44,7 @@ const SpendingLimitBottomComponent = props => {
     onChangeNumber(val);
   };
 
-  const manageLoadingIndicator = (displayFlag, message) => {
-    dispatchEvent(
-      setIsLoadingIndicatorDisplayed({
-        isLoadingIndicatorDisplayed: displayFlag,
-      }),
-    );
-    dispatchEvent(
-      setLoadingIndicatorText({
-        loadingIndicatorText: message,
-      }),
-    );
-  };
-
-  const createOneButtonAlert = (title, message) =>
-    Alert.alert(title, message, [
-      {
-        text: 'Go back.',
-        onPress: () => {
-          props.props.navigation.pop();
-        },
-      },
-    ]);
-
-  const updateSpendingLimitApi = async number => {
-    if (number == null) {
-      return;
-    }
-
-    const params = {
-      userId: userId, //User ID for which Spending limit is being set
-      cardNumber: cardNumber, //Card Number for which the Spending Limit is being set
-      spendingLimit: number, //the Spending Limit in Amount
-    };
-
-    //MARK: this line is used to contact one of the two mocked dumb APIs that return either success(90%) or failure(10%) in changing the limit
-    let randomizedSucessfulApi =
-      Math.floor(Math.random() * 100) < 10
-        ? '/setSpendingLimitf'
-        : '/setSpendingLimits';
-    console.log('API CALL : ' + randomizedSucessfulApi);
-    console.log(params);
-
-    const response = debitCardDetailsAPI
-      .post(randomizedSucessfulApi, params)
-      .then(response => {
-        // Response is designed to be in the form of
-        // For: setSpendingLimitf -> {success: "false", reason: "You are not allowed to set spending limit. Contact your administrator", limitExhausted: -1}    //The setting/removal failed at backend due to a restriction by card manager
-        // For: setSpendingLimits -> {success: "true", reason: "", limitExhausted: <numericalValue>} //Limit set successfully
-        manageLoadingIndicator(false, '');
-        if (response.status !== 200) {
-          return createOneButtonAlert(
-            'Error',
-            'Error Encountered in Setting Spending Limit',
-          );
-        } else {
-          console.log(response.data);
-          if (response.data.success != null) {
-            if (
-              response.data.success === 'false' &&
-              response.data.reason != null &&
-              response.data.reason !== ''
-            ) {
-              return createOneButtonAlert('Error', response.data.reason);
-            } else if (
-              response.data.success === 'true' &&
-              response.data.limitExhausted != null &&
-              response.data.limitExhausted !== -1
-            ) {
-              dispatchEvent(
-                setWeeklySpendingLimit({
-                  weeklySpendingLimit: number,
-                }),
-              );
-              dispatchEvent(
-                setWeeklySpendingLimitExhausted({
-                  weeklySpendingLimitExhausted: response.data.limitExhausted,
-                }),
-              );
-              props.props.navigation.pop();
-            }
-          }
-        }
-      })
-      .catch(error => {
-        console.log(response);
-        console.log(error);
-        manageLoadingIndicator(false, '');
-        return createOneButtonAlert(
-          'Error',
-          'Error Encountered in Setting Spending Limit',
-        );
-      });
-  };
-
-  const onSaveButtonPress = () => {
-    console.log('Save Button Pressed For Amount = ' + number);
-    manageLoadingIndicator(true, 'Setting weekly spending limit');
-    updateSpendingLimitApi(number);
-  };
+  const onSaveButtonPress = () => {};
 
   return (
     <View>
@@ -282,7 +182,7 @@ const SpendingLimitBottomComponent = props => {
                 ...styles.saveButtonActive,
                 backgroundColor: appColorSolid,
               }}
-              titleStyle={{color: '#FFF', fontSize: 16}}
+              titleStyle={{color: Colors.white, fontSize: 16}}
               disabled={!isSaveButtonActive}
               onPress={onSaveButtonPress}
             />

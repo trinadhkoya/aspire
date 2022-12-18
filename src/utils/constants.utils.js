@@ -13,6 +13,10 @@ export const labels = {
   debitCard: 'Debit Card',
   availableBalance: 'Available Balance',
   debitCardSpendingLimit: 'Debit Card Spending Limit',
+  tabs: {
+    debitCard: 'Debit Cards',
+    home: 'Home',
+  },
 };
 
 export const userInfo = {

@@ -1,97 +1,101 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, View} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {useSelector} from 'react-redux';
-import {selectAppColorSolid} from 'redux/slices/appVariablesSlice';
 import DebitCardScreenContainer from 'screens/DebitCardScreenContainer';
+import IMAGES from 'assets';
+import TextElement from 'ui-kit/TextElement';
+import {labels} from 'utils/constants.utils';
+import Colors from 'utils/colors.utils';
+import {font, fontSize} from 'utils/typefaces.utils';
 
-const Tab = createBottomTabNavigator();
+const BottomTabs = createBottomTabNavigator();
+
+const screenOptions = {
+  headerShown: false,
+  tabBarShowLabel: false,
+};
 
 const Tabs = () => {
-  const appColorSolid = useSelector(selectAppColorSolid);
   return (
-    <Tab.Navigator
-      screenOptions={{
-        headerShown: false,
-        tabBarShowLabel: false,
-      }}
-      style={styles.shadow}
+    <BottomTabs.Navigator
+      screenOptions={screenOptions}
       backBehavior="none"
       initialRouteName="Debit Card">
-      {/* Assigning all tabs to redirect to DebitControlCenterScreen since it is the only screen shared with us*/}
-      <Tab.Screen
+      <BottomTabs.Screen
         name="Home"
         component={DebitCardScreenContainer}
-        listeners={{
-          tabPress: e => {
-            // Prevent default action since this item is disabled
-            e.preventDefault();
-          },
-        }}
         options={{
           tabBarIcon: ({focused}) => (
-            <View
-              style={{
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
+            <View style={styles.tabItem}>
               <Image
-                source={require('../assets/Home.png')}
+                source={IMAGES.home}
                 resizeMode="contain"
-                style={{
-                  width: 24,
-                  height: 24,
-                }}
+                style={[
+                  styles.image,
+                  {
+                    tintColor: focused
+                      ? Colors.primaryColor
+                      : Colors.grey.light,
+                  },
+                ]}
               />
-              <Text style={{fontSize: 9, color: '#DDDDDD'}}>Home</Text>
-              {/* These elements will always be set to gray since they are not supposed to be focused as per the shared SR Doc */}
+              <TextElement
+                h4
+                h4Style={focused ? styles.active : styles.inactive}>
+                {labels.tabs.home}
+              </TextElement>
             </View>
           ),
         }}
       />
-      <Tab.Screen
+      <BottomTabs.Screen
         name="Debit Card"
         component={DebitCardScreenContainer}
         options={{
           tabBarIcon: ({focused}) => (
-            <View
-              style={{
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
+            <View style={styles.tabItem}>
               <Image
-                source={require('../assets/pay.png')}
+                source={IMAGES.pay}
                 resizeMode="contain"
-                style={{
-                  width: 24,
-                  height: 24,
-                  tintColor: focused ? appColorSolid : '#DDD',
-                }}
+                style={[
+                  styles.image,
+                  {
+                    tintColor: focused
+                      ? Colors.primaryColor
+                      : Colors.grey.light,
+                  },
+                ]}
               />
-              <Text
-                style={{fontSize: 9, color: focused ? appColorSolid : '#DDD'}}>
-                Debit Card
-              </Text>
-              {/* These elements will always be set to gray since they are not supposed to be focused as per the shared SR Doc */}
+              <TextElement
+                h4
+                h4Style={focused ? styles.active : styles.inactive}>
+                {labels.tabs.debitCard}
+              </TextElement>
             </View>
           ),
         }}
       />
-    </Tab.Navigator>
+    </BottomTabs.Navigator>
   );
 };
 
 export default Tabs;
 
 const styles = StyleSheet.create({
-  shadow: {
-    shadowColor: '#7F5DF0',
-    shadowOffset: {
-      width: 0,
-      height: 10,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.5,
-    elevation: 5,
+
+  image: {
+    width: 24,
+    height: 24,
   },
+  active: {
+    fontSize: fontSize.extraSmall,
+    fontFamily: font.Medium,
+    color: Colors.primaryColor,
+  },
+  inactive: {
+    fontSize: fontSize.extraSmall,
+    fontFamily: font.Medium,
+    color: Colors.grey.dark,
+  },
+  tabItem: {alignItems: 'center', justifyContent: 'center'},
 });
