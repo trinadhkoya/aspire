@@ -7,10 +7,12 @@ import {font} from 'utils/typefaces.utils';
 import PriceBadge from 'ui-kit/PriceBadge';
 import {labels, SCREEN_HEIGHT, SCREEN_WIDTH} from 'utils/constants.utils';
 import IMAGES from 'assets';
+import {useRoute} from '@react-navigation/native';
 
 function DebitCardScreenContainer(props) {
   let currency = 'S$';
   let availableBalance = '2000';
+  const route = useRoute();
 
   const [headerOccupiedSpace, setHeaderOccupiedSpace] = useState(
     SCREEN_HEIGHT * 0.2,
@@ -36,7 +38,11 @@ function DebitCardScreenContainer(props) {
           <PriceBadge currency={currency} availableBalance={availableBalance} />
         </View>
       </React.Fragment>
-      <MenuBottomSheet {...props} headerOccupiedSpace={headerOccupiedSpace} />
+      <MenuBottomSheet
+        route={route}
+        {...props}
+        headerOccupiedSpace={headerOccupiedSpace}
+      />
     </SafeAreaView>
   );
 }

@@ -1,7 +1,7 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 import Tabs from 'routing/Tabs';
-import SpendingLimitScreen from 'screens/SpendingLimitScreen';
+import SpendingLimitContainer from 'screens/SpendingLimitContainer';
 
 const DashBoardStack = createNativeStackNavigator();
 
@@ -15,7 +15,7 @@ const NavStack = () => {
       <DashBoardStack.Screen name="Tabs" component={Tabs} />
       <DashBoardStack.Screen
         name="SpendingLimit"
-        component={SpendingLimitScreen}
+        component={SpendingLimitContainer}
       />
     </DashBoardStack.Navigator>
   );

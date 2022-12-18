@@ -18,5 +18,6 @@ const IMAGES = {
   toggle: require('./toggle.png'),
   toggle1: require('./toggle-1.png'),
   brandLogo: require('./Logo.png'),
+  timer: require('../assets/pickup-car.png'),
 };
 export default IMAGES;

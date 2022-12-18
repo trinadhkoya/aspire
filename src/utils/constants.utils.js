@@ -32,6 +32,17 @@ export const userInfo = {
   id: 1,
 };
 
+export const PRE_SET_VALUES = [
+  {id: 1, value: 1000, isSelected: true},
+  {
+    id: 2,
+    value: 2000,
+    isSelected: false,
+  },
+  {id: 3, value: 3000, isSelected: false},
+  {id: 4, value: 4000, isSelected: false},
+];
+
 const isSpendingLimitSet = false;
 const currencyUnits = 'S$';
 const spendingLimit = 40000;

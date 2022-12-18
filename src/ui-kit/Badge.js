@@ -4,13 +4,13 @@ import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import Colors from 'utils/colors.utils';
 import {font, fontSize} from 'utils/typefaces.utils';
 
-const Badge = ({onPress, title}) => {
+const Badge = ({onPress, title, customStyles, titleStyle}) => {
   return (
     <TouchableOpacity
       activeOpacity={0.7}
       onPress={onPress}
-      style={styles.container}>
-      <Text style={styles.btnText}>{title}</Text>
+      style={[styles.container, customStyles]}>
+      <Text style={[styles.btnText, titleStyle]}>{title}</Text>
     </TouchableOpacity>
   );
 };
@@ -18,13 +18,15 @@ const Badge = ({onPress, title}) => {
 Badge.propTypes = {
   title: PropTypes.string.isRequired,
   onPress: PropTypes.func,
-  btnStyle: PropTypes.object,
+  customStyles: PropTypes.object,
+  titleStyle: PropTypes.object,
 };
 
 Badge.defaultProps = {
   onPress: () => {},
-  btnStyle: {},
+  customStyles: {},
   title: 'TITLE ME',
+  titleStyle: {},
 };
 
 const styles = StyleSheet.create({

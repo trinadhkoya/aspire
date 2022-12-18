@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Text, StyleSheet, Platform} from 'react-native';
+import {Platform, StyleSheet, Text} from 'react-native';
 
 import {normalize} from 'utils/screen.utils';
 import {font, fontSize} from 'utils/typefaces.utils';

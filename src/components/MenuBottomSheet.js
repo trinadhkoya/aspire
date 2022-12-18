@@ -13,11 +13,20 @@ const MenuBottomSheet = props => {
   //This will help us to place the CardView from Top Space
   const headerOccupiedSpace = props.headerOccupiedSpace;
 
+  const onPressToggle = item => {
+    if (item.menuTitle === 'Weekly spending limit') {
+      props.navigation.navigate('SpendingLimit');
+    }
+  };
+
   // Debit Card MenuItems
-  const renderItem = ({item}) => {
+  const renderItem = ({item, index}) => {
     return (
       <TouchableOpacity activeOpacity={0.7}>
-        <DebitCardMenuItem item={item} onToggle={() => {}} />
+        <DebitCardMenuItem
+          item={item}
+          onToggle={() => onPressToggle(item, index)}
+        />
       </TouchableOpacity>
     );
   };

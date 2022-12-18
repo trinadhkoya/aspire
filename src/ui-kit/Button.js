@@ -42,17 +42,9 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   touchableOpacityStyle: {
-    position: 'absolute',
-    width: 50,
     height: 50,
     alignItems: 'center',
     justifyContent: 'center',
-    right: 30,
-    bottom: 30,
-  },
-  floatingButtonStyle: {
-    // width: 50,
-    // height: 50,
   },
 });
 
