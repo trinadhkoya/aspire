@@ -152,11 +152,8 @@ const createOneButtonAlert = (title, message) =>
     },
   ]);
 
-const PopUpCard = props => {
-  const store = useStore();
+const MenuBottomSheet = props => {
   const dispatchEvent = useDispatch();
-
-  let state = store.getState();
 
   let spendingLimit = useSelector(selectWeeklySpendingLimit);
   let spendingLimitExhausted = useSelector(selectWeeklySpendingLimitExhausted);
@@ -165,7 +162,6 @@ const PopUpCard = props => {
   let currencyUnits = useSelector(selectCurrencyUnits);
   let isSpendingLimitSet = spendingLimit != null && spendingLimit > 0;
   let appColorSolid = useSelector(selectAppColorSolid);
-  let scrollheight = isSpendingLimitSet ? 580 : 540;
 
   let menuArr = [
     {
@@ -410,7 +406,7 @@ const PopUpCard = props => {
   );
 };
 
-export default PopUpCard;
+export default MenuBottomSheet;
 
 const styles = StyleSheet.create({
   behind: {

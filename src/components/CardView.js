@@ -20,6 +20,8 @@ import {
 import IMAGES from 'assets';
 import CardNumberView from 'components/CardNumberView';
 import Badge from 'ui-kit/Badge';
+import {scale} from 'utils/screen.utils';
+import { font, font as Font, fontSize } from "utils/typefaces.utils";
 
 const CardView = () => {
   const dispatch = useDispatch();
@@ -33,14 +35,14 @@ const CardView = () => {
   const onToggle = () => {
     dispatch(setCardNumberVisible({cardNumberVisible: !isCardDataVisible}));
   };
-  const badgetTitle = isCardDataVisible
+  const badgeTitle = isCardDataVisible
     ? labels.hideCardNumber
     : labels.showCardNumber;
 
   return (
     <View style={styles.container}>
       <View style={styles.innerContainer}>
-        <Badge title={badgetTitle} onPress={onToggle} />
+        <Badge title={badgeTitle} onPress={onToggle} />
       </View>
       <View
         style={[
@@ -55,18 +57,13 @@ const CardView = () => {
             resizeMode="contain"
           />
         </View>
-        <View
-          style={{
-            height: CARD_HEIGHT - 89,
-            flexDirection: 'column',
-            alignContent: 'space-between',
-          }}>
-          <View style={{marginLeft: 24, flex: 1}}>
-            <View style={{flex: 1, justifyContent: 'center'}}>
+        <View style={styles.cardView}>
+          <View style={styles.cardContent}>
+            <View style={styles.cardHolderNameView}>
               <Text style={styles.cardHolderName}>{nameOnCard}</Text>
             </View>
-            <View style={{flex: 1, alignContent: 'space-between'}}>
-              <View style={{height: 17, flex: 1}}>
+            <View style={styles.cardElementsView}>
+              <View style={styles.cardNumberView}>
                 <CardNumberView
                   cardDisplayFlag={isCardDataVisible}
                   cardNumber={cardNumber}
@@ -85,7 +82,7 @@ const CardView = () => {
           <Image source={IMAGES.visa} resizeMode="contain" />
         </View>
       </View>
-      <View style={styles.modalShape} />
+      {/*<View style={styles.modalShape} />*/}
     </View>
   );
 };
@@ -119,14 +116,14 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   shadow: {
-    shadowColor: '#AAA',
+    shadowColor: Colors.black,
     shadowOffset: {
-      width: 5,
-      height: 5,
+      width: 3,
+      height: 3,
     },
-    shadowOpacity: 0.5,
-    shadowRadius: 3.5,
-    elevation: 8,
+    shadowOpacity: 0.2,
+    shadowRadius: 2.5,
+    elevation: 3,
   },
   badge: {
     fontSize: 12,
@@ -148,12 +145,11 @@ const styles = StyleSheet.create({
     marginRight: -24,
   },
   actualCard: {
-    width: CARD_WIDTH,
+    marginHorizontal: scale(20),
     height: CARD_HEIGHT,
     borderRadius: 10,
-    marginTop: -13,
-    padding: 0,
-    zIndex: 9999,
+    zIndex: 1,
+    paddingLeft: 20,
   },
   cardBrandView: {
     marginTop: 24,
@@ -163,8 +159,9 @@ const styles = StyleSheet.create({
   },
   cardHolderName: {
     color: 'white',
-    fontWeight: '700',
-    fontSize: 22,
+    fontFamily: Font.Bold,
+    fontSize: fontSize.large,
+    letterSpacing: 0.53,
   },
   cardProvider: {
     marginBottom: 24,
@@ -174,24 +171,23 @@ const styles = StyleSheet.create({
   },
   validityView: {
     color: 'white',
-    fontWeight: '400',
-    fontSize: 15,
+    fontSize: fontSize.medium,
+    fontFamily: font.DemiBold,
     marginRight: 20,
   },
   expiryView: {
     color: 'white',
-    fontWeight: '400',
-    fontSize: 15,
+    fontSize: fontSize.medium,
+    fontFamily: font.DemiBold,
   },
-  secureDigits: {
-    color: 'white',
-    fontWeight: '500',
-    fontSize: 16,
-    width: 50,
-    letterSpacing: 2,
+  cardHolderNameView: {
+    flex: 1,
+    justifyContent: 'center',
   },
-  secureDigitsView: {
-    flexDirection: 'row',
-    marginRight: 20,
+  cardNumberView: {height: 17, flex: 1},
+  cardElementsView: {flex: 1, alignContent: 'space-between'},
+  cardContent: {
+    flex: 1,
   },
+  cardView: {height: CARD_HEIGHT - 90},
 });

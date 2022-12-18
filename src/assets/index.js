@@ -17,5 +17,6 @@ const IMAGES = {
   user: require('./user.png'),
   toggle: require('./toggle.png'),
   toggle1: require('./toggle-1.png'),
+  brandLogo: require('./Logo.png'),
 };
 export default IMAGES;

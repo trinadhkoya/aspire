@@ -4,6 +4,7 @@ import React from 'react';
 import Colors from 'utils/colors.utils';
 import {CARD_HEIGHT, CARD_WIDTH} from 'utils/constants.utils';
 import PropTypes from 'prop-types';
+import { font as Font, fontSize } from "utils/typefaces.utils";
 
 const CardNumberView = ({cardDisplayFlag, cardNumber}) => {
   if (!(cardDisplayFlag != null && cardNumber != null)) {
@@ -124,10 +125,10 @@ const styles = StyleSheet.create({
   },
   secureDigits: {
     color: 'white',
-    fontWeight: '500',
-    fontSize: 16,
+    fontSize: fontSize.regular,
     width: 50,
-    letterSpacing: 2,
+    letterSpacing: 3,
+    fontFamily: Font.DemiBold,
   },
   secureDigitsView: {
     flexDirection: 'row',
