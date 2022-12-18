@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     color: 'blue',
   },
   background: {
-    backgroundColor: '#0C365A',
+    backgroundColor: Colors.secondaryColor,
     flex: 1,
   },
   behind: {
