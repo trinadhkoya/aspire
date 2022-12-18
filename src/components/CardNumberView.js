@@ -1,9 +1,10 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import SecureTextView from 'ui-kit/SecureTextView';
 import React from 'react';
 import PropTypes from 'prop-types';
-import {font as Font, fontSize} from 'utils/typefaces.utils';
-import TextElement from 'ui-kit/TextElement';
+import {Typeface} from 'utils/typefaces.utils';
+import TextView from 'ui-kit/TextView';
+import Colors from 'utils/colors.utils';
 
 const CardNumberView = ({shouldDisplayCardDetails, cardNum}) => {
   if (
@@ -16,34 +17,38 @@ const CardNumberView = ({shouldDisplayCardDetails, cardNum}) => {
   return (
     <View style={styles.secureDigitsView}>
       {shouldDisplayCardDetails ? (
-        <Text style={styles.secureDigits}>{cardNum.substring(0, 4)}</Text>
+        <TextView color={Colors.white} h4 h4Style={styles.secureDigits}>
+          {cardNum.substring(0, 4)}
+        </TextView>
       ) : (
         <SecureTextView size={4} />
       )}
       {shouldDisplayCardDetails ? (
-        <Text style={styles.secureDigits}>{cardNum.substring(0, 4)}</Text>
+        <TextView color={Colors.white} h4 h4Style={styles.secureDigits}>
+          {cardNum.substring(0, 4)}
+        </TextView>
       ) : (
         <SecureTextView size={4} />
       )}
       {shouldDisplayCardDetails ? (
-        <Text style={styles.secureDigits}>{cardNum.substring(0, 4)}</Text>
+        <TextView color={Colors.white} h4 h4Style={styles.secureDigits}>
+          {cardNum.substring(0, 4)}
+        </TextView>
       ) : (
         <SecureTextView size={4} />
       )}
-      <TextElement h3 h3Style={styles.secureDigits}>
+      <TextView color={Colors.white} h4 h4Style={styles.secureDigits}>
         {cardNum.substring(0, 4)}
-      </TextElement>
+      </TextView>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   secureDigits: {
-    color: 'white',
-    fontSize: fontSize.regular,
     letterSpacing: 3.5,
-    fontFamily: Font.DemiBold,
     marginRight: 24,
+    fontFamily: Typeface.DemiBold,
   },
   secureDigitsView: {
     flexDirection: 'row',

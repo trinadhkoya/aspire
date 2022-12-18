@@ -1,10 +1,10 @@
-const font = {
+const Typeface = {
   Bold: 'AvenirNext-Bold',
   Medium: 'AvenirNext-Medium',
   DemiBold: 'AvenirNext-DemiBold',
   Regular: 'AvenirNext-Regular',
 };
-const fontSize = {
+const FontSize = {
   small: 12,
   extraSmall: 9,
   medium: 13,
@@ -13,4 +13,4 @@ const fontSize = {
   extraLarge: 24,
 };
 
-export {font, fontSize};
+export {Typeface, FontSize};

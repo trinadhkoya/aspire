@@ -6,8 +6,8 @@ import IMAGES from 'assets';
 import CardNumberView from 'components/CardNumberView';
 import Badge from 'ui-kit/Badge';
 import {scale} from 'utils/screen.utils';
-import {font, font as Font, fontSize} from 'utils/typefaces.utils';
-import TextElement from 'ui-kit/TextElement';
+import {FontSize, Typeface} from 'utils/typefaces.utils';
+import TextView from 'ui-kit/TextView';
 
 const CardView = ({userInfo}) => {
   const cardNumber = userInfo.cardNumber;
@@ -40,9 +40,9 @@ const CardView = ({userInfo}) => {
         <View style={styles.cardView}>
           <View style={styles.cardContent}>
             <View style={styles.cardHolderNameView}>
-              <TextElement h3 h3Style={styles.cardHolderName}>
+              <TextView color={Colors.white} h2>
                 {nameOnCard}
-              </TextElement>
+              </TextView>
             </View>
             <View style={styles.cardElementsView}>
               <View style={styles.cardNumberView}>
@@ -52,12 +52,12 @@ const CardView = ({userInfo}) => {
                 />
               </View>
               <View style={styles.section3}>
-                <TextElement h4 h4Style={styles.validityView}>
+                <TextView h4 h4Style={styles.validityView}>
                   Thru: {cardValidThru}
-                </TextElement>
-                <TextElement h4 h4Style={styles.expiryView}>
+                </TextView>
+                <TextView h4 h4Style={styles.expiryView}>
                   CVV: {isCardNumVisible ? cardCVV : '***'}
-                </TextElement>
+                </TextView>
               </View>
             </View>
           </View>
@@ -144,8 +144,8 @@ const styles = StyleSheet.create({
   },
   cardHolderName: {
     color: 'white',
-    fontFamily: Font.Bold,
-    fontSize: fontSize.large,
+    fontFamily: Typeface.Bold,
+    fontSize: FontSize.large,
     letterSpacing: 0.53,
   },
   cardProvider: {
@@ -156,14 +156,14 @@ const styles = StyleSheet.create({
   },
   validityView: {
     color: 'white',
-    fontSize: fontSize.medium,
-    fontFamily: font.DemiBold,
+    fontSize: FontSize.medium,
+    fontFamily: Typeface.DemiBold,
     marginRight: 20,
   },
   expiryView: {
     color: 'white',
-    fontSize: fontSize.medium,
-    fontFamily: font.DemiBold,
+    fontSize: FontSize.medium,
+    fontFamily: Typeface.DemiBold,
   },
   cardHolderNameView: {
     flex: 1,

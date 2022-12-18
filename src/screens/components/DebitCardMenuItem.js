@@ -1,8 +1,8 @@
 import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
-import TextElement from 'ui-kit/TextElement';
+import TextView from 'ui-kit/TextView';
 import React from 'react';
 import Colors from 'utils/colors.utils';
-import {font, fontSize} from 'utils/typefaces.utils';
+import {FontSize, Typeface} from 'utils/typefaces.utils';
 import IMAGES from 'assets';
 import PropTypes from 'prop-types';
 
@@ -15,12 +15,12 @@ function DebitCardMenuItem({item, onToggle}) {
         resizeMode="contain"
       />
       <View style={styles.menuItemTextViews}>
-        <TextElement h3 h3Style={styles.menuTitle}>
+        <TextView h3 h3Style={styles.menuTitle}>
           {item.menuTitle}
-        </TextElement>
-        <TextElement h3 h3Style={styles.menuSubtitle}>
+        </TextView>
+        <TextView h3 h3Style={styles.menuSubtitle}>
           {item.menuSubtitle}
-        </TextElement>
+        </TextView>
       </View>
       {item.itemEnabled && (
         <TouchableOpacity onPress={onToggle} style={styles.rightIcon}>
@@ -34,6 +34,7 @@ function DebitCardMenuItem({item, onToggle}) {
     </View>
   );
 }
+
 DebitCardMenuItem.propTypes = {
   onToggle: PropTypes.func,
 };
@@ -52,18 +53,18 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   menuTitle: {
-    fontFamily: font.Medium,
+    fontFamily: Typeface.Medium,
     color: Colors.blue.dark,
-    fontSize: fontSize.regular,
+    fontSize: FontSize.regular,
   },
   menuIcon: {
     width: 32,
     height: 32,
   },
   menuSubtitle: {
-    fontSize: fontSize.medium,
+    fontSize: FontSize.medium,
     color: Colors.grey.dark,
-    fontFamily: font.Regular,
+    fontFamily: Typeface.Regular,
     marginTop: 2,
   },
   menuItemTextViews: {

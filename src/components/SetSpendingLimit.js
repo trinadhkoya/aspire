@@ -13,8 +13,8 @@ import {selectCurrencyUnits} from 'redux/slices/debitCardSlice';
 import Colors from 'utils/colors.utils';
 import Badge from 'ui-kit/Badge';
 import {PRE_SET_VALUES, SCREEN_HEIGHT} from 'utils/constants.utils';
-import {font, fontSize} from 'utils/typefaces.utils';
-import TextElement from 'ui-kit/TextElement';
+import {FontSize, Typeface} from 'utils/typefaces.utils';
+import TextView from 'ui-kit/TextView';
 import Divider from 'ui-kit/Divider';
 import IMAGES from 'assets';
 
@@ -46,9 +46,7 @@ const SetSpendingLimit = props => {
           <View style={{marginTop: 32}}>
             <View style={{flexDirection: 'row'}}>
               <Image style={styles.image} source={IMAGES.timer} />
-              <TextElement h3>
-                Set a weekly debit card spending limit
-              </TextElement>
+              <TextView h3>Set a weekly debit card spending limit</TextView>
             </View>
             <View
               style={{
@@ -83,9 +81,9 @@ const SetSpendingLimit = props => {
             <Divider height={1} />
             <View>
               {/* View for Note */}
-              <TextElement h4 h4Style={styles.note}>
+              <TextView h4 h4Style={styles.note}>
                 Here weekly means the last 7 days - not the calendar week
-              </TextElement>
+              </TextView>
             </View>
           </View>
 
@@ -137,7 +135,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   btnText: {
-    fontFamily: font.DemiBold,
+    fontFamily: Typeface.DemiBold,
     fontSize: 16,
     color: Colors.white,
   },
@@ -166,9 +164,9 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   note: {
-    fontSize: fontSize.medium,
+    fontSize: FontSize.medium,
     color: Colors.grey.dark,
-    fontFamily: font.Regular,
+    fontFamily: Typeface.Regular,
     paddingVertical: 10,
   },
   customBadge: {

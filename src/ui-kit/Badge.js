@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import Colors from 'utils/colors.utils';
-import {font, fontSize} from 'utils/typefaces.utils';
+import {FontSize, Typeface} from 'utils/typefaces.utils';
 
 const Badge = ({onPress, title, customStyles, titleStyle}) => {
   return (
@@ -38,9 +38,9 @@ const styles = StyleSheet.create({
   },
   btnText: {
     color: Colors.primaryTextColor,
-    fontSize: fontSize.small,
+    fontSize: FontSize.small,
     alignItems: 'flex-start',
-    fontFamily: font.DemiBold,
+    fontFamily: Typeface.DemiBold,
     alignSelf: 'center',
   },
 });

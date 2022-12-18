@@ -3,10 +3,10 @@ import {Image, StyleSheet, View} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import DebitCardScreenContainer from 'screens/DebitCardScreenContainer';
 import IMAGES from 'assets';
-import TextElement from 'ui-kit/TextElement';
+import TextView from 'ui-kit/TextView';
 import {labels} from 'utils/constants.utils';
 import Colors from 'utils/colors.utils';
-import {font, fontSize} from 'utils/typefaces.utils';
+import {FontSize, Typeface} from 'utils/typefaces.utils';
 
 const BottomTabs = createBottomTabNavigator();
 
@@ -39,11 +39,9 @@ const Tabs = () => {
                   },
                 ]}
               />
-              <TextElement
-                h4
-                h4Style={focused ? styles.active : styles.inactive}>
+              <TextView h4 h4Style={focused ? styles.active : styles.inactive}>
                 {labels.tabs.home}
-              </TextElement>
+              </TextView>
             </View>
           ),
         }}
@@ -66,11 +64,9 @@ const Tabs = () => {
                   },
                 ]}
               />
-              <TextElement
-                h4
-                h4Style={focused ? styles.active : styles.inactive}>
+              <TextView h4 h4Style={focused ? styles.active : styles.inactive}>
                 {labels.tabs.debitCard}
-              </TextElement>
+              </TextView>
             </View>
           ),
         }}
@@ -87,13 +83,13 @@ const styles = StyleSheet.create({
     height: 24,
   },
   active: {
-    fontSize: fontSize.extraSmall,
-    fontFamily: font.Medium,
+    fontSize: FontSize.extraSmall,
+    fontFamily: Typeface.Medium,
     color: Colors.primaryColor,
   },
   inactive: {
-    fontSize: fontSize.extraSmall,
-    fontFamily: font.Medium,
+    fontSize: FontSize.extraSmall,
+    fontFamily: Typeface.Medium,
     color: Colors.grey.dark,
   },
   tabItem: {alignItems: 'center', justifyContent: 'center'},

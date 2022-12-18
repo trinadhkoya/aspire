@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
 import {Image, SafeAreaView, StyleSheet, View} from 'react-native';
 import MenuBottomSheet from '../components/MenuBottomSheet';
-import TextElement from 'ui-kit/TextElement';
+import TextView from 'ui-kit/TextView';
 import Colors from 'utils/colors.utils';
-import {font} from 'utils/typefaces.utils';
 import PriceBadge from 'ui-kit/PriceBadge';
 import {labels, SCREEN_HEIGHT, SCREEN_WIDTH} from 'utils/constants.utils';
 import IMAGES from 'assets';
@@ -31,10 +30,12 @@ function DebitCardScreenContainer(props) {
           <View style={styles.imgContainer}>
             <Image style={styles.brandLogo} source={IMAGES.brandLogo} />
           </View>
-          <TextElement h1 h1Style={styles.debitCardLabel}>
+          <TextView h1 color={Colors.white}>
             {labels.debitCard}
-          </TextElement>
-          <TextElement>{labels.availableBalance}</TextElement>
+          </TextView>
+          <TextView h4 color={Colors.white}>
+            {labels.availableBalance}
+          </TextView>
           <PriceBadge currency={currency} availableBalance={availableBalance} />
         </View>
       </React.Fragment>
@@ -76,8 +77,6 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white,
   },
   debitCardLabel: {
-    color: Colors.white,
-    fontFamily: font.Bold,
     paddingBottom: 24,
   },
   brandLogo: {
