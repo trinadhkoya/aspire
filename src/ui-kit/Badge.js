@@ -1,8 +1,8 @@
-import PropTypes from "prop-types";
-import React from "react";
-import { StyleSheet, Text, TouchableOpacity } from "react-native";
-import Colors from "utils/colors.utils";
-import { FontSize, Typeface } from "utils/typefaces.utils";
+import PropTypes from 'prop-types';
+import React from 'react';
+import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import Colors from 'utils/colors.utils';
+import {FontSize, Typeface} from 'utils/typefaces.utils';
 
 const Badge = ({onPress, title, customStyles, titleStyle}) => {
   return (

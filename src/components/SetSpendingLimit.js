@@ -8,8 +8,6 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import {useSelector} from 'react-redux';
-import {selectCurrencyUnits} from 'redux/slices/debitCardSlice';
 import Colors from 'utils/colors.utils';
 import Badge from 'ui-kit/Badge';
 import {PRE_SET_VALUES, SCREEN_HEIGHT} from 'utils/constants.utils';
@@ -23,7 +21,7 @@ const {width, height} = Dimensions.get('screen');
 
 const SetSpendingLimit = () => {
   const [number, onChangeNumber] = useState(null);
-  const currencyUnits = useSelector(selectCurrencyUnits);
+  const currencyUnits = 'useSelector(selectCurrencyUnits)'; //TODO
 
   const onChangeNumberMiddle = val => {
     onChangeNumber(val);

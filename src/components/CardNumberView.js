@@ -1,10 +1,10 @@
-import { StyleSheet, View } from "react-native";
-import SecureTextView from "ui-kit/SecureTextView";
-import React from "react";
-import PropTypes from "prop-types";
-import { Typeface } from "utils/typefaces.utils";
-import TextView from "ui-kit/TextView";
-import Colors from "utils/colors.utils";
+import {StyleSheet, View} from 'react-native';
+import SecureTextView from 'ui-kit/SecureTextView';
+import React from 'react';
+import PropTypes from 'prop-types';
+import {Typeface} from 'utils/typefaces.utils';
+import TextView from 'ui-kit/TextView';
+import Colors from 'utils/colors.utils';
 
 const CardNumberView = ({shouldDisplayCardDetails, cardNum}) => {
   if (

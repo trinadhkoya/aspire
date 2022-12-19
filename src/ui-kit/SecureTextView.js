@@ -1,8 +1,8 @@
-import { StyleSheet, View } from "react-native";
-import Circle from "ui-kit/Circle";
-import React from "react";
-import PropTypes from "prop-types";
-import { Typeface } from "utils/typefaces.utils";
+import {StyleSheet, View} from 'react-native';
+import Circle from 'ui-kit/Circle';
+import React from 'react';
+import PropTypes from 'prop-types';
+import {Typeface} from 'utils/typefaces.utils';
 
 const SecureTextView = props => {
   return (

@@ -1,8 +1,8 @@
-import React from "react";
-import { ActivityIndicator, StyleSheet, View } from "react-native";
-import Colors from "utils/colors.utils";
-import TextView from "ui-kit/TextView";
-import PropTypes from "prop-types";
+import React from 'react';
+import {ActivityIndicator, StyleSheet, View} from 'react-native';
+import Colors from 'utils/colors.utils';
+import TextView from 'ui-kit/TextView';
+import PropTypes from 'prop-types';
 
 const Loader = ({isLoading, loadingIndicatorText}) => {
   if (isLoading) {

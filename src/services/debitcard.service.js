@@ -1,5 +1,3 @@
-import axios from "axios";
+import {get} from './APIClient';
 
-export default axios.create({
-  baseURL: 'https://apimocha.com/aspire-app-tha',
-});
+export const getProfileInfo = id => get(`user/${id}`);

@@ -1,7 +1,7 @@
-import * as React from "react";
-import Svg, { Defs, Path } from "react-native-svg";
-import PropTypes from "prop-types";
-import Colors from "utils/colors.utils";
+import * as React from 'react';
+import Svg, {Defs, Path} from 'react-native-svg';
+import PropTypes from 'prop-types';
+import Colors from 'utils/colors.utils';
 
 const IcoBrandLogo = props => (
   <Svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} {...props}>

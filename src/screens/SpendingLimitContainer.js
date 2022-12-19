@@ -1,10 +1,10 @@
-import React from "react";
-import { SafeAreaView, StyleSheet, View } from "react-native";
-import SetSpendingLimit from "../components/SetSpendingLimit";
-import Colors from "utils/colors.utils";
-import { SCREEN_HEIGHT } from "utils/constants.utils";
-import { Metrics } from "utils/screen.utils";
-import Header from "ui-kit/Header";
+import React from 'react';
+import {SafeAreaView, StyleSheet, View} from 'react-native';
+import SetSpendingLimit from '../components/SetSpendingLimit';
+import Colors from 'utils/colors.utils';
+import {SCREEN_HEIGHT} from 'utils/constants.utils';
+import {Metrics} from 'utils/screen.utils';
+import Header from 'ui-kit/Header';
 
 const SpendingLimitContainer = props => {
   return (

@@ -7,16 +7,5 @@ module.exports = {
         root: ['./src'],
       },
     ],
-    [
-      'dotenv-import',
-      {
-        moduleName: '@env',
-        path: '.env',
-        blocklist: null,
-        allowlist: null,
-        safe: false,
-        allowUndefined: false,
-      },
-    ],
   ],
 };

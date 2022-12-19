@@ -1,10 +1,17 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import Colors from "utils/colors.utils";
-import { SCREEN_HEIGHT } from "utils/constants.utils";
-import IcoBack from "assets/icons/Icoback";
-import IcoBrandLogo from "assets/icons/IcoBrandLogo";
+import React from 'react';
+import PropTypes from 'prop-types';
+import {
+  SafeAreaView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import Colors from 'utils/colors.utils';
+import {SCREEN_HEIGHT} from 'utils/constants.utils';
+import IcoBack from 'assets/icons/Icoback';
+import IcoBrandLogo from 'assets/icons/IcoBrandLogo';
 
 const HEADER_HEIGHT = SCREEN_HEIGHT * 0.07;
 const HEADER_ICON_SIZE = 24;

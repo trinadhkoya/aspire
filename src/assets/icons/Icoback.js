@@ -1,7 +1,7 @@
-import * as React from "react";
-import Svg, { G, Path } from "react-native-svg";
-import PropTypes from "prop-types";
-import Colors from "utils/colors.utils";
+import * as React from 'react';
+import Svg, {G, Path} from 'react-native-svg';
+import PropTypes from 'prop-types';
+import Colors from 'utils/colors.utils';
 
 const IcoBack = props => (
   <Svg
