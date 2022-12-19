@@ -8,6 +8,7 @@ import {
 } from 'utils/constants.utils';
 import DebitCardMenuItem from 'screens/components/DebitCardMenuItem';
 import Colors from 'utils/colors.utils';
+import {Metrics} from 'utils/screen.utils';
 
 const MenuBottomSheet = props => {
   //This will help us to place the CardView from Top Space
@@ -48,7 +49,6 @@ const MenuBottomSheet = props => {
           {top: headerOccupiedSpace + sheetCoverHeight + hideCardBadgeHeight},
         ]}>
         <FlatList
-          style={{flex: 1}}
           bounces={true}
           scrollEventThrottle={16}
           showsVerticalScrollIndicator={false}
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     right: 0,
     zIndex: -1,
     backgroundColor: Colors.white,
-    borderRadius: 10,
+    borderRadius: Metrics.borderRadius,
   },
   listHeader: {
     backgroundColor: Colors.white,

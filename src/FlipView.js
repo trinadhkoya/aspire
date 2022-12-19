@@ -1,8 +1,8 @@
 'use strict';
 
-import PropTypes from 'prop-types';
-import React from 'react';
-import {Animated, Easing, StyleSheet, View} from 'react-native';
+import PropTypes from "prop-types";
+import React from "react";
+import { Animated, Easing, StyleSheet, View } from "react-native";
 
 const styles = StyleSheet.create({
   flippableView: {

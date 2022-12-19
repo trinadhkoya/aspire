@@ -1,13 +1,13 @@
-import React, {useState} from 'react';
-import {Image, StyleSheet, View} from 'react-native';
-import Colors from 'utils/colors.utils';
-import {CARD_HEIGHT, CARD_WIDTH, labels} from 'utils/constants.utils';
-import IMAGES from 'assets';
-import CardNumberView from 'components/CardNumberView';
-import Badge from 'ui-kit/Badge';
-import {scale} from 'utils/screen.utils';
-import {FontSize, Typeface} from 'utils/typefaces.utils';
-import TextView from 'ui-kit/TextView';
+import React, { useState } from "react";
+import { Image, StyleSheet, View } from "react-native";
+import Colors from "utils/colors.utils";
+import { CARD_HEIGHT, CARD_WIDTH, labels } from "utils/constants.utils";
+import IMAGES from "assets";
+import CardNumberView from "components/CardNumberView";
+import Badge from "ui-kit/Badge";
+import { scale } from "utils/screen.utils";
+import { FontSize, Typeface } from "utils/typefaces.utils";
+import TextView from "ui-kit/TextView";
 
 const CardView = ({userInfo}) => {
   const cardNumber = userInfo.cardNumber;
@@ -52,10 +52,10 @@ const CardView = ({userInfo}) => {
                 />
               </View>
               <View style={styles.section3}>
-                <TextView h4 h4Style={styles.validityView}>
+                <TextView color={Colors.white} h4 h4Style={styles.validityView}>
                   Thru: {cardValidThru}
                 </TextView>
-                <TextView h4 h4Style={styles.expiryView}>
+                <TextView color={Colors.white} h4 h4Style={styles.expiryView}>
                   CVV: {isCardNumVisible ? cardCVV : '***'}
                 </TextView>
               </View>
@@ -155,13 +155,11 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
   },
   validityView: {
-    color: 'white',
     fontSize: FontSize.medium,
     fontFamily: Typeface.DemiBold,
     marginRight: 20,
   },
   expiryView: {
-    color: 'white',
     fontSize: FontSize.medium,
     fontFamily: Typeface.DemiBold,
   },

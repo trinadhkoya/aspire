@@ -1,9 +1,9 @@
-import {StyleSheet, View} from 'react-native';
-import Colors from 'utils/colors.utils';
-import TextView from 'ui-kit/TextView';
-import React from 'react';
-import PropTypes from 'prop-types';
-import {FontSize, Typeface} from 'utils/typefaces.utils';
+import { StyleSheet, View } from "react-native";
+import Colors from "utils/colors.utils";
+import TextView from "ui-kit/TextView";
+import React from "react";
+import PropTypes from "prop-types";
+import { FontSize, Typeface } from "utils/typefaces.utils";
 
 function PriceBadge({currency, availableBalance}) {
   return (

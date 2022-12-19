@@ -1,5 +1,5 @@
 //Responsible for storing data inside of routing
-import {createSlice} from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   cardNumberVisible: false, //Masked Card Number and CVV - Local to the App - Defaults to 'hidden' state every time the src is opened.

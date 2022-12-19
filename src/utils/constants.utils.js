@@ -1,4 +1,4 @@
-import {Dimensions} from 'react-native';
+import { Dimensions } from "react-native";
 
 const {width, height} = Dimensions.get('screen');
 export const SCREEN_WIDTH = width;
@@ -17,6 +17,7 @@ export const labels = {
     debitCard: 'Debit Cards',
     home: 'Home',
   },
+  save: 'Save',
 };
 
 export const userInfo = {
@@ -33,14 +34,10 @@ export const userInfo = {
 };
 
 export const PRE_SET_VALUES = [
-  {id: 1, value: 1000, isSelected: true},
-  {
-    id: 2,
-    value: 2000,
-    isSelected: false,
-  },
-  {id: 3, value: 3000, isSelected: false},
-  {id: 4, value: 4000, isSelected: false},
+  {id: 1, value: 1000, isSelected: true, currency: 'S$'},
+  {id: 2, value: 2000, isSelected: false, currency: 'S$'},
+  {id: 3, value: 3000, isSelected: false, currency: 'S$'},
+  {id: 4, value: 4000, isSelected: false, currency: 'S$'},
 ];
 
 const isSpendingLimitSet = false;

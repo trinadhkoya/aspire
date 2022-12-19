@@ -1,5 +1,5 @@
 //Responsible for storing variables That Control behavior of src
-import {createSlice} from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isLoadingIndicatorDisplayed: false, //Sets visibility of Loading Indicator across the src

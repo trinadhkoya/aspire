@@ -17,97 +17,69 @@ import {FontSize, Typeface} from 'utils/typefaces.utils';
 import TextView from 'ui-kit/TextView';
 import Divider from 'ui-kit/Divider';
 import IMAGES from 'assets';
+import {Metrics} from 'utils/screen.utils';
 
 const {width, height} = Dimensions.get('screen');
 
-const SetSpendingLimit = props => {
-  let [number, onChangeNumber] = useState(null);
-  let [isSaveButtonActive] = useState(false);
-
+const SetSpendingLimit = () => {
+  const [number, onChangeNumber] = useState(null);
   const currencyUnits = useSelector(selectCurrencyUnits);
-  let appColorSolid = Colors.primaryColor;
 
   const onChangeNumberMiddle = val => {
     onChangeNumber(val);
   };
-
   const onSaveButtonPress = () => {};
 
   return (
-    <>
-      <View style={styles.sheetContainer}>
-        <View
-          style={{
-            flexDirection: 'column',
-            marginLeft: 24,
-            marginRight: 24,
-            flex: 1,
-          }}>
-          <View style={{marginTop: 32}}>
-            <View style={{flexDirection: 'row'}}>
-              <Image style={styles.image} source={IMAGES.timer} />
-              <TextView h3>Set a weekly debit card spending limit</TextView>
-            </View>
-            <View
-              style={{
-                marginTop: 13,
-                height: 33,
-                flexDirection: 'row',
-                alignContent: 'flex-start',
-              }}>
-              {/* View for Input */}
-              <View
-                style={{
-                  backgroundColor: appColorSolid,
-                  borderRadius: 3,
-                  width: 40,
-                  height: 24,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}>
-                {/* View of currency units */}
-                <Text h2>{currencyUnits}</Text>
-              </View>
-              <TextInput
-                style={styles.input}
-                onChangeText={onChangeNumberMiddle}
-                onSubmitEditing={onSaveButtonPress}
-                value={number}
-                placeholder="Amount"
-                keyboardType="numeric"
-                returnKeyType="done"
-              />
-            </View>
-            <Divider height={1} />
-            <View>
-              {/* View for Note */}
-              <TextView h4 h4Style={styles.note}>
-                Here weekly means the last 7 days - not the calendar week
-              </TextView>
-            </View>
+    <View style={styles.outerContainer}>
+      <View style={styles.innerContainer}>
+        <>
+          <View style={styles.fromTopSheet}>
+            <Image style={styles.image} source={IMAGES.timer} />
+            <TextView h3>Set a weekly debit card spending limit</TextView>
           </View>
 
-          <View style={{flexDirection: 'row'}}>
-            {/* View for Preset Buttons */}
-            <ScrollView horizontal>
-              {PRE_SET_VALUES.map((item, index) => {
-                return (
-                  <View style={{marginRight: 25}}>
-                    <Badge
-                      key={index.toString()}
-                      title={item.value}
-                      titleStyle={{color: Colors.white}}
-                      customStyles={styles.customBadge}
-                      onPress={() => onChangeNumberMiddle(item.value)}
-                    />
-                  </View>
-                );
-              })}
-            </ScrollView>
+          <View style={styles.inputView}>
+            <View style={styles.badgeView}>
+              <Text h2>{currencyUnits}</Text>
+            </View>
+            <TextInput
+              style={styles.input}
+              onChangeText={onChangeNumberMiddle}
+              onSubmitEditing={onSaveButtonPress}
+              value={number}
+              placeholder="Amount"
+              keyboardType="numeric"
+              returnKeyType="done"
+            />
           </View>
-        </View>
+
+          <Divider height={1} />
+
+          <View>
+            <TextView h4 h4Style={styles.note}>
+              Here weekly means the last 7 days - not the calendar week
+            </TextView>
+          </View>
+        </>
+        {/*Show Pre-Selected Values*/}
+        <ScrollView horizontal>
+          {PRE_SET_VALUES.map((item, index) => {
+            return (
+              <View style={{marginRight: 25}}>
+                <Badge
+                  key={index.toString()}
+                  title={`${item.currency} ${item.value}`}
+                  titleStyle={{color: Colors.white}}
+                  customStyles={styles.customBadge}
+                  onPress={() => onChangeNumberMiddle(item.value)}
+                />
+              </View>
+            );
+          })}
+        </ScrollView>
       </View>
-    </>
+    </View>
   );
 };
 
@@ -141,7 +113,7 @@ const styles = StyleSheet.create({
   },
   saveButtonActive: {
     width: '100%',
-    borderRadius: 30,
+    borderRadius: Metrics.btnBorderRadius,
   },
   loadingOverlay: {
     height: height,
@@ -151,12 +123,12 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     justifyContent: 'center',
   },
-  sheetContainer: {
+  outerContainer: {
     backgroundColor: Colors.white,
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
-    marginTop: SCREEN_HEIGHT * 0.1,
-    flex: 1,
+    marginTop: SCREEN_HEIGHT * 0.05,
+    height: '100%',
   },
   image: {
     width: 16,
@@ -173,5 +145,28 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.secondaryColor,
     // opacity: 0.1,
     borderRadius: -1,
+  },
+  innerContainer: {
+    flexDirection: 'column',
+    marginLeft: 24,
+    marginRight: 24,
+    flex: 1,
+  },
+  fromTopSheet: {
+    flexDirection: 'row',
+  },
+  inputView: {
+    marginTop: 13,
+    height: 33,
+    flexDirection: 'row',
+    alignContent: 'flex-start',
+  },
+  badgeView: {
+    backgroundColor: Colors.primaryColor,
+    borderRadius: 3,
+    width: 40,
+    height: 24,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });

@@ -1,10 +1,10 @@
-import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
-import TextView from 'ui-kit/TextView';
-import React from 'react';
-import Colors from 'utils/colors.utils';
-import {FontSize, Typeface} from 'utils/typefaces.utils';
-import IMAGES from 'assets';
-import PropTypes from 'prop-types';
+import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
+import TextView from "ui-kit/TextView";
+import React from "react";
+import Colors from "utils/colors.utils";
+import { FontSize, Typeface } from "utils/typefaces.utils";
+import IMAGES from "assets";
+import PropTypes from "prop-types";
 
 function DebitCardMenuItem({item, onToggle}) {
   return (

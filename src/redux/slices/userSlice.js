@@ -1,5 +1,5 @@
 //Responsible for storing data inside of routing
-import {createSlice} from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   userName: null, //Username field. NOT USED anywhere in the src

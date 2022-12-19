@@ -1,6 +1,6 @@
-import {StyleSheet, View} from 'react-native';
-import PropTypes from 'prop-types';
-import Colors from 'utils/colors.utils';
+import { StyleSheet, View } from "react-native";
+import PropTypes from "prop-types";
+import Colors from "utils/colors.utils";
 
 const Circle = props => {
   return (

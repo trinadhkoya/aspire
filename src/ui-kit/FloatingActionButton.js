@@ -1,6 +1,6 @@
-import React from 'react';
-import {StyleSheet, TouchableOpacity, View} from 'react-native';
-import PropTypes from 'prop-types';
+import React from "react";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
+import PropTypes from "prop-types";
 
 function FloatingActionButton(props) {
   return (

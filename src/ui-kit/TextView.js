@@ -1,10 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {StyleSheet, Text} from 'react-native';
+import React from "react";
+import PropTypes from "prop-types";
+import { StyleSheet, Text } from "react-native";
 
-import {normalize} from 'utils/screen.utils';
-import {FontSize, Typeface} from 'utils/typefaces.utils';
-import Colors from 'utils/colors.utils';
+import { normalize } from "utils/screen.utils";
+import { FontSize, Typeface } from "utils/typefaces.utils";
+import Colors from "utils/colors.utils";
 
 const TextView = props => {
   const {

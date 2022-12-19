@@ -1,7 +1,7 @@
-import {configureStore} from '@reduxjs/toolkit';
-import debitCardSliceReducer from './slices/debitCardSlice';
-import userSliceReducer from './slices/userSlice';
-import appVariablesSliceReducer from './slices/appVariablesSlice';
+import { configureStore } from "@reduxjs/toolkit";
+import debitCardSliceReducer from "./slices/debitCardSlice";
+import userSliceReducer from "./slices/userSlice";
+import appVariablesSliceReducer from "./slices/appVariablesSlice";
 
 export const store = configureStore({
   reducer: {

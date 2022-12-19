@@ -1,12 +1,12 @@
-import React, {useState} from 'react';
-import {Image, SafeAreaView, StyleSheet, View} from 'react-native';
-import MenuBottomSheet from '../components/MenuBottomSheet';
-import TextView from 'ui-kit/TextView';
-import Colors from 'utils/colors.utils';
-import PriceBadge from 'ui-kit/PriceBadge';
-import {labels, SCREEN_HEIGHT, SCREEN_WIDTH} from 'utils/constants.utils';
-import IMAGES from 'assets';
-import {useRoute} from '@react-navigation/native';
+import React, { useState } from "react";
+import { Image, SafeAreaView, StyleSheet, View } from "react-native";
+import MenuBottomSheet from "../components/MenuBottomSheet";
+import TextView from "ui-kit/TextView";
+import Colors from "utils/colors.utils";
+import PriceBadge from "ui-kit/PriceBadge";
+import { labels, SCREEN_HEIGHT, SCREEN_WIDTH } from "utils/constants.utils";
+import IMAGES from "assets";
+import { useRoute } from "@react-navigation/native";
 
 function DebitCardScreenContainer(props) {
   let currency = 'S$';

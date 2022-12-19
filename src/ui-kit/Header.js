@@ -1,49 +1,32 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import {
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import Colors from 'utils/colors.utils';
-import IcoBack from 'assets/icons/Icoback';
-import IcoBrandLogo from 'assets/icons/IcoBrandLogo';
-// import colors from '../../assets/colors';
-// import IcoBack from '../../assets/icons/misc/IcoBackIcon';
-// import IcoBrandLogo from '../../assets/icons/tab/IcoBrandLogo';
+import React from "react";
+import PropTypes from "prop-types";
+import { SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import Colors from "utils/colors.utils";
+import { SCREEN_HEIGHT } from "utils/constants.utils";
+import IcoBack from "assets/icons/Icoback";
+import IcoBrandLogo from "assets/icons/IcoBrandLogo";
 
-const componentSize = 44;
-const buttonSize = 24;
+const HEADER_HEIGHT = SCREEN_HEIGHT * 0.07;
+const HEADER_ICON_SIZE = 24;
 
-class ScreenHeader extends Component {
-  renderLeftButton = () => (
-    <TouchableOpacity
-      onPress={this.props.onPressCancel}
-      hitSlop={styles.touchArea}>
+const ScreenHeader = props => {
+  const renderLeftButton = () => (
+    <TouchableOpacity onPress={props.onPressCancel} hitSlop={styles.touchArea}>
       <View style={styles.rightIcon}>
         <IcoBack width={24} height={24} fillColor={Colors.white} />
       </View>
     </TouchableOpacity>
   );
 
-  renderRightButton = () => {
-    const {
-      onPressRightButton,
-      rightButtonDisabled,
-      rightButtonComponent,
-      showRightButton,
-    } = this.props;
-
-    if (showRightButton) {
+  const renderRightButton = () => {
+    if (props.showRightButton) {
       return (
         <TouchableOpacity
-          disabled={rightButtonDisabled}
+          disabled={props.rightButtonDisabled}
           activeOpacity={0.7}
           hitSlop={styles.touchArea}
-          onPress={onPressRightButton}>
-          {rightButtonComponent()}
+          onPress={props.onPressRightButton}>
+          {props.rightButtonComponent()}
         </TouchableOpacity>
       );
     } else {
@@ -51,43 +34,27 @@ class ScreenHeader extends Component {
     }
   };
 
-  render() {
-    const {
-      showRightButton,
-      segmentedComponent,
-      paddingTop,
-      backgroundColor,
-      title,
-      showLeftIcon,
-    } = this.props;
-    const customStyles = [
-      styles.container,
-      {
-        paddingTop: paddingTop,
-        backgroundColor: backgroundColor,
-      },
-    ];
-    return (
-      <SafeAreaView style={customStyles}>
-        <View style={styles.headerOuterWrap}>
-          <View style={styles.headerInnerWrap}>
-            {showLeftIcon && (
-              <View style={styles.left}>
-                <View style={styles.right}>{this.renderLeftButton()}</View>
-              </View>
-            )}
-            <View
-              style={showRightButton ? styles.centerAbsolute : styles.center}>
-              <Text style={styles.title}>{title}</Text>
+  return (
+    <SafeAreaView style={props.customStyles}>
+      <View style={styles.headerOuterWrap}>
+        <View style={styles.headerInnerWrap}>
+          {props.showLeftIcon && (
+            <View style={styles.left}>
+              <View style={styles.right}>{renderLeftButton()}</View>
             </View>
-            <View style={styles.right}>{this.renderRightButton()}</View>
+          )}
+          <View
+            style={
+              props.showRightButton ? styles.centerAbsolute : styles.center
+            }>
+            <Text style={styles.title}>{props.title}</Text>
           </View>
-          <View style={{flex: 1}}>{segmentedComponent()}</View>
+          <View style={styles.right}>{renderRightButton()}</View>
         </View>
-      </SafeAreaView>
-    );
-  }
-}
+      </View>
+    </SafeAreaView>
+  );
+};
 
 ScreenHeader.propTypes = {
   title: PropTypes.string,
@@ -109,9 +76,6 @@ ScreenHeader.defaultProps = {
   showCancel: false,
   showRightButton: false,
   rightButtonDisabled: false,
-  rightButtonComponent: () => {},
-  onPressRightButton: () => {},
-  segmentedComponent: () => {},
   onPressCancel: () => {},
   showLeftIcon: true,
 };
@@ -120,7 +84,7 @@ const styles = StyleSheet.create({
   container: {
     position: 'absolute',
     left: 0,
-    top: 0,
+    top: StatusBar.currentHeight,
     right: 0,
     alignItems: 'center',
     justifyContent: 'flex-end',
@@ -134,7 +98,7 @@ const styles = StyleSheet.create({
   },
   headerInnerWrap: {
     flexDirection: 'row',
-    height: 44,
+    height: HEADER_HEIGHT,
     flex: 1,
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -164,7 +128,7 @@ const styles = StyleSheet.create({
   },
   rightIcon: {
     position: 'absolute',
-    top: (componentSize - buttonSize) / 2,
+    top: (HEADER_HEIGHT - HEADER_ICON_SIZE) / 2,
     right: 20,
   },
   touchArea: {

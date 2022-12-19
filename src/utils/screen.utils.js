@@ -1,4 +1,4 @@
-import {Dimensions, PixelRatio} from 'react-native';
+import { Dimensions, PixelRatio } from "react-native";
 
 const {width, height} = Dimensions.get('window');
 const [shortDimension, longDimension] =
@@ -7,6 +7,11 @@ const [shortDimension, longDimension] =
 //Default guideline sizes are based on standard ~5" screen mobile device
 const guidelineBaseWidth = 366;
 const guidelineBaseHeight = 606;
+
+export const Metrics = {
+  borderRadius: 24,
+  btnBorderRadius: 30,
+};
 
 export const scale = size => (shortDimension / guidelineBaseWidth) * size;
 export const verticalScale = size =>
