@@ -7,6 +7,7 @@ import TextView from 'ui-kit/TextView';
 import {labels} from 'utils/constants.utils';
 import Colors from 'utils/colors.utils';
 import {FontSize, Typeface} from 'utils/typefaces.utils';
+import HomeContainer from 'screens/HomeContainer';
 
 const BottomTabs = createBottomTabNavigator();
 
@@ -20,10 +21,10 @@ const Tabs = () => {
     <BottomTabs.Navigator
       screenOptions={screenOptions}
       backBehavior="none"
-      initialRouteName="Debit Card">
+      initialRouteName="Home">
       <BottomTabs.Screen
         name="Home"
-        component={DebitCardScreenContainer}
+        component={HomeContainer}
         options={{
           tabBarIcon: ({focused}) => (
             <View style={styles.tabItem}>

@@ -14,11 +14,12 @@ export const labels = {
   availableBalance: 'Available Balance',
   debitCardSpendingLimit: 'Debit Card Spending Limit',
   tabs: {
-    debitCard: 'Debit Cards',
+    debitCard: 'Debit Card',
     home: 'Home',
   },
   save: 'Save',
   spendingLimit: 'Spending limit',
+  loading: 'Loading...',
 };
 
 export const userInfo = {
@@ -82,7 +83,7 @@ export const DEBIT_CARD_MENU_ITEMS = [
   },
   {
     key: '5',
-    menuTitle: 'Deactivated cards',
+    menuTitle: 'Deactivate cards',
     menuSubtitle: 'Your previously deactivated cards',
     iconAssetUri: require('../assets/Transfer.png'),
     buttonState: -1,

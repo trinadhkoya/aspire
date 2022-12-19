@@ -7,9 +7,9 @@ import {
 } from 'redux/actions/profile.actions';
 import {reduxHelper} from 'redux/utils/reduxHelper';
 
-function* onGetProfile() {
+function* onGetProfile({payload: query}) {
   try {
-    const response = yield call(getProfileInfo);
+    const response = yield call(getProfileInfo, query);
     yield put(fetchProfileSuccess(response));
   } catch (error) {
     yield put(fetchProfileFailed(error.response));

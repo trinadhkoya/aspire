@@ -1,9 +1,10 @@
 import {FETCH_USER_INFO} from 'redux/actions/actionTypes';
 import {reduxHelper} from 'redux/utils/reduxHelper';
 
-const fetchProfileRequest = () => {
+const fetchProfileRequest = query => {
   return {
     type: reduxHelper(FETCH_USER_INFO).actionRequest,
+    payload: query,
   };
 };
 

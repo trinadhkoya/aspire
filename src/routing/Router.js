@@ -5,7 +5,7 @@ import SpendingLimitContainer from 'screens/SpendingLimitContainer';
 
 const DashBoardStack = createNativeStackNavigator();
 
-const NavStack = () => {
+const Router = () => {
   return (
     <DashBoardStack.Navigator
       initialRouteName="Tabs"
@@ -21,4 +21,4 @@ const NavStack = () => {
   );
 };
 
-export default NavStack;
+export default Router;

@@ -5,15 +5,15 @@ import TextView from 'ui-kit/TextView';
 import PropTypes from 'prop-types';
 
 const Loader = ({isLoading, loadingIndicatorText}) => {
-  if (isLoading) {
-    return (
-      <View style={styles.loadingOverlay}>
-        <ActivityIndicator size="large" color={Colors.black} />
-        <TextView h3>{loadingIndicatorText}</TextView>
-      </View>
-    );
+  if (!isLoading) {
+    return null;
   }
-  return <></>;
+  return (
+    <View style={styles.loadingOverlay}>
+      <ActivityIndicator size="large" color={Colors.black} />
+      <TextView h3>{loadingIndicatorText}</TextView>
+    </View>
+  );
 };
 Loader.propTypes = {
   loadingIndicatorText: PropTypes.string,
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: 'rgba(0,0,0,0.25)',
     position: 'absolute',
-    alignContent: 'center',
+    alignItems: 'center',
     justifyContent: 'center',
     zIndex: 9999,
   },

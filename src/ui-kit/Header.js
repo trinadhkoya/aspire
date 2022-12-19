@@ -9,7 +9,6 @@ import {
   View,
 } from 'react-native';
 import Colors from 'utils/colors.utils';
-import {SCREEN_HEIGHT} from 'utils/constants.utils';
 import IcoBack from 'assets/icons/Icoback';
 import IcoBrandLogo from 'assets/icons/IcoBrandLogo';
 import {HEADER_HEIGHT, HEADER_ICON_SIZE} from 'utils/screen.utils';
