@@ -5,7 +5,6 @@ const initialState = {
   isLoading: false,
   data: [],
   error: '',
-  updateFinished: false,
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -36,8 +35,7 @@ const profileReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        data: action.payload,
-        updateFinished: action.updateFinished,
+        data: {...state, ...action.payload},
       };
     case reduxHelper(UPDATE_USER_INFO).actionFailure:
       return {

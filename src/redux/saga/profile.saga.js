@@ -9,29 +9,29 @@ import {
 } from 'redux/actions/profile.actions';
 import {reduxHelper} from 'redux/utils/reduxHelper';
 
-function* onGetProfile({payload: query}) {
+const onGetProfile = function* ({payload: query}) {
   try {
     const response = yield call(getProfileInfo, query);
     yield put(fetchProfileSuccess(response));
   } catch (error) {
     yield put(fetchProfileFailed(error.response));
   }
-}
-function* onUpdateProfile({id, payload}) {
+};
+const onUpdateProfile = function* ({id, payload}) {
   try {
     const response = yield call(updateProfileInfo, id, payload);
-    yield put(updateProfileSuccess(response));
+    yield put(updateProfileSuccess(id, response));
   } catch (error) {
     yield put(updateProfileFailed(error.response));
   }
-}
+};
 
-function* ProfileSaga() {
+const ProfileSaga = function* () {
   yield takeLatest(reduxHelper(FETCH_USER_INFO).actionRequest, onGetProfile);
   yield takeLatest(
     reduxHelper(UPDATE_USER_INFO).actionRequest,
     onUpdateProfile,
   );
-}
+};
 
 export default ProfileSaga;

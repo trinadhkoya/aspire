@@ -61,7 +61,7 @@ const SetSpendingLimit = props => {
             return (
               <>
                 <Badge
-                  key={index.toString()}
+                  key={'badge_item' + index}
                   title={`${item.currency} ${item.value}`}
                   titleStyle={{color: Colors.primaryColor}}
                   customStyles={styles.customBadge}
@@ -113,6 +113,8 @@ const styles = StyleSheet.create({
     opacity: 0.7,
     marginRight: 20,
     height: 40,
+    borderTopLeftRadius: 0,
+    borderTopRightRadius: 0,
   },
   innerContainer: {
     flexDirection: 'column',
@@ -140,7 +142,7 @@ const styles = StyleSheet.create({
   btnTitleStyle: {
     fontFamily: Typeface.DemiBold,
     color: Colors.white,
-    fontSize: FontSize.extraLarge,
+    fontSize: FontSize.regular,
   },
   btn: {
     position: 'absolute',

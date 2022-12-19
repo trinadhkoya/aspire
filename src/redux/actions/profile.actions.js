@@ -22,10 +22,10 @@ const fetchProfileFailed = error => {
   };
 };
 
-const updateProfileRequest = (id, newUpdate) => {
+const updateProfileRequest = (id, newData) => {
   return {
     type: reduxHelper(UPDATE_USER_INFO).actionRequest,
-    payload: newUpdate,
+    payload: newData,
     id: id,
   };
 };
@@ -37,11 +37,10 @@ const updateProfileFailed = error => {
   };
 };
 
-const updateProfileSuccess = (id, newUpdate) => {
+const updateProfileSuccess = (id, updatedRes) => {
   return {
     type: reduxHelper(UPDATE_USER_INFO).actionSuccess,
-    payload: newUpdate,
-    updateFinished: true,
+    payload: updatedRes,
     id: id,
   };
 };

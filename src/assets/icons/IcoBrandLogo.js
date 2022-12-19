@@ -8,7 +8,7 @@ const IcoBrandLogo = props => (
     <Defs />
     <Path
       style={{
-        fill: 'transparent',
+        fill: Colors.transparent,
       }}
       d="M0 0h24v24H0z"
     />

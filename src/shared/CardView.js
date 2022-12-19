@@ -3,7 +3,7 @@ import {Image, StyleSheet, View} from 'react-native';
 import Colors from 'utils/colors.utils';
 import {CARD_HEIGHT, CARD_WIDTH, labels} from 'utils/constants.utils';
 import IMAGES from 'assets';
-import CardNumberView from 'components/CardNumberView';
+import CardNumberView from 'shared/CardNumberView';
 import Badge from 'ui-kit/Badge';
 import {scale} from 'utils/screen.utils';
 import {FontSize, Typeface} from 'utils/typefaces.utils';

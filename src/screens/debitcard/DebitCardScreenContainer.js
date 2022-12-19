@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
-import MenuBottomSheet from '../../components/MenuBottomSheet';
+import MenuBottomSheet from './components/MenuBottomSheet';
 import Colors from 'utils/colors.utils';
 import {labels, SCREEN_HEIGHT} from 'utils/constants.utils';
 import {fetchProfileRequest} from 'redux/actions/profile.actions';
 import {connect, useDispatch} from 'react-redux';
-import DebitCardHeader from 'screens/components/DebitCardHeader';
+import DebitCardHeader from 'screens/debitcard/components/DebitCardHeader';
 import Loader from 'ui-kit/Loader';
 import PropTypes from 'prop-types';
 
@@ -13,7 +13,7 @@ function DebitCardScreenContainer(props) {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchProfileRequest(1));
-  }, []);
+  }, [dispatch]);
 
   const [headerOccupiedSpace, setHeaderOccupiedSpace] = useState(
     SCREEN_HEIGHT * 0.2,

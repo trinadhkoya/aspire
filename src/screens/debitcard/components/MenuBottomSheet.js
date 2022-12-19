@@ -1,12 +1,12 @@
 import React from 'react';
 import {FlatList, StyleSheet, TouchableOpacity, View} from 'react-native';
-import CardView from './CardView';
+import CardView from '../../../shared/CardView';
 import {
   CARD_HEIGHT,
   DEBIT_CARD_MENU_ITEMS,
   labels,
 } from 'utils/constants.utils';
-import DebitCardMenuItem from 'screens/components/DebitCardMenuItem';
+import DebitCardMenuItem from 'screens/debitcard/components/DebitCardMenuItem';
 import Colors from 'utils/colors.utils';
 import {Metrics} from 'utils/screen.utils';
 import PropTypes from 'prop-types';

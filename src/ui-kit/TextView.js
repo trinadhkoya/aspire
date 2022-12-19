@@ -41,6 +41,7 @@ const TextView = props => {
         h5 && h5Style && StyleSheet.flatten(h5Style),
         bold && {fontFamily: Typeface.Bold},
         {color: props.color},
+        style && style,
       ])}
       {...rest}>
       {children}

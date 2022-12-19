@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import SetSpendingLimit from '../../components/SetSpendingLimit';
+import SetSpendingLimit from './components/SetSpendingLimit';
 import Colors from 'utils/colors.utils';
 import {labels, SCREEN_HEIGHT} from 'utils/constants.utils';
 import {HEADER_HEIGHT, Metrics} from 'utils/screen.utils';
@@ -12,7 +12,7 @@ import {connect, useDispatch} from 'react-redux';
 import PropTypes from 'prop-types';
 import Loader from 'ui-kit/Loader';
 
-const SpendingLimitContainer = ({info, isLoading, isUpdated, navigation}) => {
+const SpendingLimitContainer = ({info, isLoading, navigation}) => {
   const insets = useSafeAreaInsets();
   const dispatch = useDispatch();
 
@@ -70,12 +70,11 @@ SpendingLimitContainer.defaultProps = {
   isUpdated: false,
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = ({profile}) => {
   return {
-    info: state.profile.data,
-    isLoading: state.profile.isLoading,
-    error: state.profile.error,
-    isUpdated: state.profile.updateFinished,
+    info: profile.data,
+    isLoading: profile.isLoading,
+    error: profile.error,
   };
 };
 export default connect(mapStateToProps)(SpendingLimitContainer);
