@@ -1,12 +1,18 @@
-import {Dimensions, PixelRatio} from 'react-native';
-import {SCREEN_HEIGHT} from 'utils/constants.utils';
+import {PixelRatio} from 'react-native';
+import {SCREEN_HEIGHT, SCREEN_WIDTH} from 'utils/constants.utils';
 
 export const HEADER_HEIGHT = SCREEN_HEIGHT * 0.05;
 export const HEADER_ICON_SIZE = 24;
 
-const {width, height} = Dimensions.get('window');
+const pixelRatio = PixelRatio.get();
+
+const deviceHeight = SCREEN_HEIGHT;
+const deviceWidth = SCREEN_WIDTH;
+
 const [shortDimension, longDimension] =
-  width < height ? [width, height] : [height, width];
+  deviceWidth < deviceHeight
+    ? [deviceWidth, deviceHeight]
+    : [deviceHeight, deviceWidth];
 
 //Default guideline sizes are based on standard ~5" screen mobile device
 const guidelineBaseWidth = 366;
@@ -22,23 +28,6 @@ export const verticalScale = size =>
   (longDimension / guidelineBaseHeight) * size;
 export const moderateScale = (size, factor = 0.5) =>
   size + (scale(size) - size) * factor;
-export const moderateVerticalScale = (size, factor = 0.5) =>
-  size + (verticalScale(size) - size) * factor;
-
-//
-// Method to normalize size of fonts across devices
-//
-// Some code taken from https://jsfiddle.net/97ty7yjk/ &
-// https://stackoverflow.com/questions/34837342/font-size-on-iphone-6s-plus
-//
-// author: @xiaoneng
-// date: 14/10/2016
-// version: 03
-//
-
-const pixelRatio = PixelRatio.get();
-const deviceHeight = Dimensions.get('window').height;
-const deviceWidth = Dimensions.get('window').width;
 
 export const normalize = size => {
   if (pixelRatio >= 2 && pixelRatio < 3) {
