@@ -21,6 +21,7 @@ const TextView = props => {
     h4Style,
     h5Style,
     color,
+    bold,
     ...rest
   } = props;
 
@@ -38,6 +39,7 @@ const TextView = props => {
         h3 && h3Style && StyleSheet.flatten(h3Style),
         h4 && h4Style && StyleSheet.flatten(h4Style),
         h5 && h5Style && StyleSheet.flatten(h5Style),
+        bold && {fontFamily: Typeface.Bold},
         {color: props.color},
       ])}
       {...rest}>

@@ -9,7 +9,7 @@ const Badge = ({onPress, title, customStyles, titleStyle}) => {
     <TouchableOpacity
       activeOpacity={0.7}
       onPress={onPress}
-      style={[styles.container, customStyles]}>
+      style={Object.assign({}, styles.container, customStyles)}>
       <Text style={[styles.btnText, titleStyle]}>{title}</Text>
     </TouchableOpacity>
   );

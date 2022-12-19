@@ -12,13 +12,13 @@ import Colors from 'utils/colors.utils';
 import {SCREEN_HEIGHT} from 'utils/constants.utils';
 import IcoBack from 'assets/icons/Icoback';
 import IcoBrandLogo from 'assets/icons/IcoBrandLogo';
-
-const HEADER_HEIGHT = SCREEN_HEIGHT * 0.07;
-const HEADER_ICON_SIZE = 24;
+import {HEADER_HEIGHT, HEADER_ICON_SIZE} from 'utils/screen.utils';
 
 const ScreenHeader = props => {
   const renderLeftButton = () => (
-    <TouchableOpacity onPress={props.onPressCancel} hitSlop={styles.touchArea}>
+    <TouchableOpacity
+      onPress={props.onPressLeftIcon}
+      hitSlop={styles.touchArea}>
       <View style={styles.rightIcon}>
         <IcoBack width={24} height={24} fillColor={Colors.white} />
       </View>
@@ -73,7 +73,7 @@ ScreenHeader.propTypes = {
   rightButtonDisabled: PropTypes.bool,
   segmentedComponent: PropTypes.func,
   paddingTop: PropTypes.number,
-  onPressCancel: PropTypes.func,
+  onPressLeftIcon: PropTypes.func,
   showLeftIcon: PropTypes.bool,
 };
 
@@ -83,7 +83,7 @@ ScreenHeader.defaultProps = {
   showCancel: false,
   showRightButton: false,
   rightButtonDisabled: false,
-  onPressCancel: () => {},
+  onPressLeftIcon: () => {},
   showLeftIcon: true,
 };
 

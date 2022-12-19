@@ -1,27 +1,18 @@
 import React, {useState} from 'react';
-import {
-  Dimensions,
-  Image,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from 'react-native';
+import {Image, ScrollView, StyleSheet, TextInput, View} from 'react-native';
 import Colors from 'utils/colors.utils';
 import Badge from 'ui-kit/Badge';
-import {PRE_SET_VALUES, SCREEN_HEIGHT} from 'utils/constants.utils';
+import {labels, PRE_SET_VALUES} from 'utils/constants.utils';
 import {FontSize, Typeface} from 'utils/typefaces.utils';
 import TextView from 'ui-kit/TextView';
 import Divider from 'ui-kit/Divider';
 import IMAGES from 'assets';
+import Button from 'ui-kit/Button';
 import {Metrics} from 'utils/screen.utils';
-
-const {width, height} = Dimensions.get('screen');
 
 const SetSpendingLimit = () => {
   const [number, onChangeNumber] = useState(null);
-  const currencyUnits = 'useSelector(selectCurrencyUnits)'; //TODO
+  const currencyUnits = '$'; //TODO
 
   const onChangeNumberMiddle = val => {
     onChangeNumber(val);
@@ -29,7 +20,7 @@ const SetSpendingLimit = () => {
   const onSaveButtonPress = () => {};
 
   return (
-    <View style={styles.outerContainer}>
+    <View style={styles.container}>
       <View style={styles.innerContainer}>
         <>
           <View style={styles.fromTopSheet}>
@@ -39,7 +30,9 @@ const SetSpendingLimit = () => {
 
           <View style={styles.inputView}>
             <View style={styles.badgeView}>
-              <Text h2>{currencyUnits}</Text>
+              <TextView bold color={Colors.white}>
+                {currencyUnits}
+              </TextView>
             </View>
             <TextInput
               style={styles.input}
@@ -60,23 +53,30 @@ const SetSpendingLimit = () => {
             </TextView>
           </View>
         </>
+
         {/*Show Pre-Selected Values*/}
-        <ScrollView horizontal>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           {PRE_SET_VALUES.map((item, index) => {
             return (
-              <View style={{marginRight: 25}}>
+              <>
                 <Badge
                   key={index.toString()}
                   title={`${item.currency} ${item.value}`}
-                  titleStyle={{color: Colors.white}}
+                  titleStyle={{color: Colors.primaryColor}}
                   customStyles={styles.customBadge}
                   onPress={() => onChangeNumberMiddle(item.value)}
                 />
-              </View>
+              </>
             );
           })}
         </ScrollView>
       </View>
+      <Button
+        onPress={() => {}}
+        title={labels.save}
+        buttonStyle={styles.btn}
+        titleStyle={styles.btnTitleStyle}
+      />
     </View>
   );
 };
@@ -85,48 +85,16 @@ export default SetSpendingLimit;
 
 const styles = StyleSheet.create({
   input: {
-    height: 33,
-    marginLeft: 12,
-    marginTop: -3.5,
-    marginRight: 0,
-    marginBottom: 0,
-    borderWidth: 0,
-    fontWeight: 'bold',
-    fontSize: 24,
+    paddingLeft: 12,
+    fontFamily: Typeface.Bold,
+    fontSize: FontSize.extraLarge,
+    alignContent: 'center',
+    justifyContent: 'center',
+    alignSelf: 'center',
+  },
+
+  container: {
     flex: 1,
-    alignContent: 'center',
-    justifyContent: 'flex-start',
-  },
-  customButton: {
-    borderRadius: 4,
-    height: 40,
-    width: (width - 72) / 3,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  btnText: {
-    fontFamily: Typeface.DemiBold,
-    fontSize: 16,
-    color: Colors.white,
-  },
-  saveButtonActive: {
-    width: '100%',
-    borderRadius: Metrics.btnBorderRadius,
-  },
-  loadingOverlay: {
-    height: height,
-    width: width,
-    backgroundColor: 'rgba(0,0,0,0.25)',
-    position: 'absolute',
-    alignContent: 'center',
-    justifyContent: 'center',
-  },
-  outerContainer: {
-    backgroundColor: Colors.white,
-    borderTopLeftRadius: 24,
-    borderTopRightRadius: 24,
-    marginTop: SCREEN_HEIGHT * 0.05,
-    height: '100%',
   },
   image: {
     width: 16,
@@ -140,14 +108,14 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   customBadge: {
-    backgroundColor: Colors.secondaryColor,
-    // opacity: 0.1,
-    borderRadius: -1,
+    backgroundColor: Colors.primary70,
+    opacity: 0.7,
+    marginRight: 20,
+    height: 40,
   },
   innerContainer: {
     flexDirection: 'column',
-    marginLeft: 24,
-    marginRight: 24,
+    marginHorizontal: 24,
     flex: 1,
   },
   fromTopSheet: {
@@ -162,9 +130,22 @@ const styles = StyleSheet.create({
   badgeView: {
     backgroundColor: Colors.primaryColor,
     borderRadius: 3,
-    width: 40,
-    height: 24,
     alignItems: 'center',
     justifyContent: 'center',
+    width: 40,
+    paddingVertical: 5,
+    height: 24,
+  },
+  btnTitleStyle: {
+    fontFamily: Typeface.DemiBold,
+    color: Colors.white,
+    fontSize: FontSize.extraLarge,
+  },
+  btn: {
+    position: 'absolute',
+    bottom: 0,
+    left: 20,
+    right: 20,
+    borderRadius: Metrics.btnBorderRadius,
   },
 });

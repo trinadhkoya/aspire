@@ -1,4 +1,8 @@
 import {Dimensions, PixelRatio} from 'react-native';
+import {SCREEN_HEIGHT} from 'utils/constants.utils';
+
+export const HEADER_HEIGHT = SCREEN_HEIGHT * 0.05;
+export const HEADER_ICON_SIZE = 24;
 
 const {width, height} = Dimensions.get('window');
 const [shortDimension, longDimension] =

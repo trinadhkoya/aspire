@@ -18,6 +18,7 @@ export const labels = {
     home: 'Home',
   },
   save: 'Save',
+  spendingLimit: 'Spending limit',
 };
 
 export const userInfo = {
