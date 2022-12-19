@@ -25,20 +25,20 @@ const CardNumberView = ({shouldDisplayCardDetails, cardNum}) => {
       )}
       {shouldDisplayCardDetails ? (
         <TextView color={Colors.white} h4 h4Style={styles.secureDigits}>
-          {cardNum.substring(0, 4)}
+          {cardNum.substring(4, 8)}
         </TextView>
       ) : (
         <SecureTextView size={4} />
       )}
       {shouldDisplayCardDetails ? (
         <TextView color={Colors.white} h4 h4Style={styles.secureDigits}>
-          {cardNum.substring(0, 4)}
+          {cardNum.substring(8, 12)}
         </TextView>
       ) : (
         <SecureTextView size={4} />
       )}
       <TextView color={Colors.white} h4 h4Style={styles.secureDigits}>
-        {cardNum.substring(0, 4)}
+        {cardNum.substring(12, 16)}
       </TextView>
     </View>
   );

@@ -23,3 +23,10 @@ export const get = async (url, config) =>
       ...config,
     })
     .then(response => response?.data);
+
+export const put = async (url, config) =>
+  await axiosApi
+    .put(url, {
+      ...config,
+    })
+    .then(response => response?.data);

@@ -8,7 +8,7 @@ const SecureTextView = props => {
   return (
     <View style={styles.secureDigitsView}>
       {Array.from({length: props.size}).map((item, index) => {
-        return <Circle key={index.to} height={8} width={8} />;
+        return <Circle key={index.toString(10)} height={8} width={8} />;
       })}
     </View>
   );

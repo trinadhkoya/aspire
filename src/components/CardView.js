@@ -10,16 +10,14 @@ import {FontSize, Typeface} from 'utils/typefaces.utils';
 import TextView from 'ui-kit/TextView';
 
 const CardView = ({userInfo}) => {
-  const cardNumber = userInfo.cardNumber;
-  const cardValidThru = userInfo.cardValidThru;
-  const cardCVV = userInfo.cardCVV;
-  const nameOnCard = userInfo.nameOnCard;
-
-  const [isCardNumVisible, setIsCardNumberVisible] = useState(true);
+  const [isCardNumVisible, setIsCardNumberVisible] = useState(
+    userInfo?.cardNumberVisible,
+  );
 
   const onToggle = () => {
     setIsCardNumberVisible(!isCardNumVisible);
   };
+
   const badgeTitle = isCardNumVisible
     ? labels.hideCardNumber
     : labels.showCardNumber;
@@ -41,22 +39,22 @@ const CardView = ({userInfo}) => {
           <View style={styles.cardContent}>
             <View style={styles.cardHolderNameView}>
               <TextView color={Colors.white} h2>
-                {nameOnCard}
+                {userInfo?.displayName}
               </TextView>
             </View>
             <View style={styles.cardElementsView}>
               <View style={styles.cardNumberView}>
                 <CardNumberView
                   shouldDisplayCardDetails={isCardNumVisible}
-                  cardNum={cardNumber}
+                  cardNum={userInfo?.cardNumber}
                 />
               </View>
               <View style={styles.section3}>
                 <TextView color={Colors.white} h4 h4Style={styles.validityView}>
-                  Thru: {cardValidThru}
+                  {`Thru :${userInfo.cardValidThru}`}
                 </TextView>
                 <TextView color={Colors.white} h4 h4Style={styles.expiryView}>
-                  CVV: {isCardNumVisible ? cardCVV : '***'}
+                  CVV: {isCardNumVisible ? userInfo.cardCVV : '***'}
                 </TextView>
               </View>
             </View>

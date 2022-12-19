@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Image, ScrollView, StyleSheet, TextInput, View} from 'react-native';
 import Colors from 'utils/colors.utils';
 import Badge from 'ui-kit/Badge';
@@ -10,19 +10,22 @@ import IMAGES from 'assets';
 import Button from 'ui-kit/Button';
 import {Metrics} from 'utils/screen.utils';
 
-const SetSpendingLimit = () => {
-  const [number, onChangeNumber] = useState(null);
-  const currencyUnits = '$'; //TODO
+const SetSpendingLimit = props => {
+  const [initialBudget, setInitialBudget] = useState(1000);
+  useEffect(() => {}, [initialBudget]);
 
-  const onChangeNumberMiddle = val => {
-    onChangeNumber(val);
+  const onChangeText = val => {
+    setInitialBudget(val);
   };
-  const onSaveButtonPress = () => {};
+
+  const onSaveButtonPress = () => {
+    props.onUpdateSpendLimit(initialBudget);
+  };
 
   return (
     <View style={styles.container}>
       <View style={styles.innerContainer}>
-        <>
+        <React.Fragment>
           <View style={styles.fromTopSheet}>
             <Image style={styles.image} source={IMAGES.timer} />
             <TextView h3>Set a weekly debit card spending limit</TextView>
@@ -31,17 +34,15 @@ const SetSpendingLimit = () => {
           <View style={styles.inputView}>
             <View style={styles.badgeView}>
               <TextView bold color={Colors.white}>
-                {currencyUnits}
+                $
               </TextView>
             </View>
             <TextInput
               style={styles.input}
-              onChangeText={onChangeNumberMiddle}
-              onSubmitEditing={onSaveButtonPress}
-              value={number}
+              keyboardType="default"
+              onChangeText={text => setInitialBudget(text)}
+              value={initialBudget.toString()}
               placeholder="Amount"
-              keyboardType="numeric"
-              returnKeyType="done"
             />
           </View>
 
@@ -52,7 +53,7 @@ const SetSpendingLimit = () => {
               Here weekly means the last 7 days - not the calendar week
             </TextView>
           </View>
-        </>
+        </React.Fragment>
 
         {/*Show Pre-Selected Values*/}
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
@@ -64,7 +65,7 @@ const SetSpendingLimit = () => {
                   title={`${item.currency} ${item.value}`}
                   titleStyle={{color: Colors.primaryColor}}
                   customStyles={styles.customBadge}
-                  onPress={() => onChangeNumberMiddle(item.value)}
+                  onPress={() => onChangeText(item.value)}
                 />
               </>
             );
@@ -72,7 +73,7 @@ const SetSpendingLimit = () => {
         </ScrollView>
       </View>
       <Button
-        onPress={() => {}}
+        onPress={onSaveButtonPress}
         title={labels.save}
         buttonStyle={styles.btn}
         titleStyle={styles.btnTitleStyle}

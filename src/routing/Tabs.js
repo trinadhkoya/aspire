@@ -1,13 +1,13 @@
 import React from 'react';
 import {Image, StyleSheet, View} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import DebitCardScreenContainer from 'screens/DebitCardScreenContainer';
+import DebitCardScreenContainer from 'screens/debitcard/DebitCardScreenContainer';
 import IMAGES from 'assets';
 import TextView from 'ui-kit/TextView';
 import {labels} from 'utils/constants.utils';
 import Colors from 'utils/colors.utils';
 import {FontSize, Typeface} from 'utils/typefaces.utils';
-import HomeContainer from 'screens/HomeContainer';
+import HomeContainer from 'screens/home/HomeContainer';
 
 const BottomTabs = createBottomTabNavigator();
 

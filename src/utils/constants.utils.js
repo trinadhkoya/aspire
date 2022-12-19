@@ -36,10 +36,10 @@ export const userInfo = {
 };
 
 export const PRE_SET_VALUES = [
-  {id: 1, value: 1000, isSelected: true, currency: 'S$'},
-  {id: 2, value: 2000, isSelected: false, currency: 'S$'},
-  {id: 3, value: 3000, isSelected: false, currency: 'S$'},
-  {id: 4, value: 4000, isSelected: false, currency: 'S$'},
+  {id: 1, value: 1000, currency: 'S$'},
+  {id: 2, value: 2000, currency: 'S$'},
+  {id: 3, value: 3000, currency: 'S$'},
+  {id: 4, value: 4000, currency: 'S$'},
 ];
 
 const isSpendingLimitSet = false;
@@ -47,6 +47,11 @@ const currencyUnits = 'S$';
 const spendingLimit = 40000;
 
 export const DEBIT_CARD_MENU_ITEMS = [
+  {
+    key: '0',
+    buttonState: -1,
+    itemEnabled: false,
+  },
   {
     key: '1',
     menuTitle: 'Top-up account',

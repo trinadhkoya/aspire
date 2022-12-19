@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
-import MenuBottomSheet from '../components/MenuBottomSheet';
+import MenuBottomSheet from '../../components/MenuBottomSheet';
 import Colors from 'utils/colors.utils';
 import {labels, SCREEN_HEIGHT} from 'utils/constants.utils';
-import {useRoute} from '@react-navigation/native';
 import {fetchProfileRequest} from 'redux/actions/profile.actions';
 import {connect, useDispatch} from 'react-redux';
 import DebitCardHeader from 'screens/components/DebitCardHeader';
@@ -11,10 +10,6 @@ import Loader from 'ui-kit/Loader';
 import PropTypes from 'prop-types';
 
 function DebitCardScreenContainer(props) {
-  let currency = 'S$';
-  let availableBalance = '2000';
-  const route = useRoute();
-
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchProfileRequest(1));
@@ -44,27 +39,27 @@ function DebitCardScreenContainer(props) {
       <React.Fragment>
         <DebitCardHeader
           onLayout={onLayout}
-          currency={currency}
-          availableBalance={availableBalance}
+          currency={props?.info?.currencySymbol}
+          availableBalance={props?.info?.availableBalance}
         />
       </React.Fragment>
       <MenuBottomSheet
-        route={route}
-        {...props}
+        userInfo={props?.info}
         headerOccupiedSpace={headerOccupiedSpace}
+        {...props}
       />
     </SafeAreaView>
   );
 }
 DebitCardScreenContainer.propTypes = {
   isLoading: PropTypes.bool,
-  error: PropTypes.string,
-  info: PropTypes.object,
+  error: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  info: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 };
 
-DebitCardScreenContainer.propTypes = {
+DebitCardScreenContainer.defaultProps = {
   isLoading: false,
-  error: '',
+  error: null,
   info: {},
 };
 

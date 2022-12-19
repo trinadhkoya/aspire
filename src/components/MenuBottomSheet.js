@@ -4,11 +4,13 @@ import CardView from './CardView';
 import {
   CARD_HEIGHT,
   DEBIT_CARD_MENU_ITEMS,
-  userInfo,
+  labels,
 } from 'utils/constants.utils';
 import DebitCardMenuItem from 'screens/components/DebitCardMenuItem';
 import Colors from 'utils/colors.utils';
 import {Metrics} from 'utils/screen.utils';
+import PropTypes from 'prop-types';
+import TextView from 'ui-kit/TextView';
 
 const MenuBottomSheet = props => {
   //This will help us to place the CardView from Top Space
@@ -22,6 +24,16 @@ const MenuBottomSheet = props => {
 
   // Debit Card MenuItems
   const renderItem = ({item, index}) => {
+    if (index === 0) {
+      return (
+        <View style={styles.spendLimit}>
+          <TextView h3>{labels.debitCardSpendingLimit}</TextView>
+          <TextView h3 color={Colors.primaryColor}>
+            {props?.userInfo?.weeklySpendingLimit}
+          </TextView>
+        </View>
+      );
+    }
     return (
       <TouchableOpacity activeOpacity={0.7}>
         <DebitCardMenuItem
@@ -42,7 +54,7 @@ const MenuBottomSheet = props => {
 
   return (
     <React.Fragment>
-      <CardView userInfo={userInfo} />
+      <CardView userInfo={props?.userInfo} />
       <View
         style={[
           styles.listItemContainer,
@@ -61,7 +73,12 @@ const MenuBottomSheet = props => {
     </React.Fragment>
   );
 };
-
+MenuBottomSheet.propTypes = {
+  userInfo: PropTypes.object,
+};
+MenuBottomSheet.defaultProps = {
+  userInfo: {},
+};
 export default MenuBottomSheet;
 
 const styles = StyleSheet.create({
@@ -77,5 +94,11 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
+  },
+  spendLimit: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 24,
+    alignItems: 'center',
   },
 });
