@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import Colors from 'utils/colors.utils';
 import {FontSize, Typeface} from 'utils/typefaces.utils';
+import {Metrics} from 'utils/screen.utils';
 
 const Badge = ({onPress, title, customStyles, titleStyle}) => {
   return (
@@ -33,7 +34,8 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.white,
     justifyContent: 'center',
-    borderTopEndRadius: 5,
+    borderTopLeftRadius: Metrics.borderRadius,
+    borderTopRightRadius: Metrics.borderRadius,
     padding: 10,
   },
   btnText: {

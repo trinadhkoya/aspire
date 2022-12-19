@@ -25,11 +25,14 @@ const MenuBottomSheet = props => {
   // Debit Card MenuItems
   const renderItem = ({item, index}) => {
     if (index === 0) {
+      //I treated as 0 position as Debit card Spend Limit Widget
       return (
         <View style={styles.spendLimit}>
-          <TextView h3>{labels.debitCardSpendingLimit}</TextView>
+          <TextView color={Colors.black}>
+            {labels.debitCardSpendingLimit}
+          </TextView>
           <TextView h3 color={Colors.primaryColor}>
-            {props?.userInfo?.weeklySpendingLimit}
+            {`${props?.userInfo?.currencySymbol}${props?.userInfo?.weeklySpendingLimit}`}
           </TextView>
         </View>
       );
@@ -88,17 +91,20 @@ const styles = StyleSheet.create({
     right: 0,
     zIndex: -1,
     backgroundColor: Colors.white,
-    borderRadius: Metrics.borderRadius,
+    borderTopLeftRadius: Metrics.borderRadius,
+    borderTopRightRadius: Metrics.borderRadius,
+    flex: 1,
+    bottom: 0,
   },
   listHeader: {
-    backgroundColor: Colors.white,
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
+    backgroundColor: Colors.transparent,
+    zIndex: 1,
   },
   spendLimit: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: 24,
     alignItems: 'center',
+    paddingVertical: 20,
   },
 });

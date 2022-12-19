@@ -39,7 +39,7 @@ const CardView = ({userInfo}) => {
           <View style={styles.cardContent}>
             <View style={styles.cardHolderNameView}>
               <TextView color={Colors.white} h2>
-                {userInfo?.displayName}
+                {userInfo?.nameOnCard}
               </TextView>
             </View>
             <View style={styles.cardElementsView}>
