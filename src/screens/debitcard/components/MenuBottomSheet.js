@@ -12,6 +12,9 @@ import {Metrics} from 'utils/screen.utils';
 import PropTypes from 'prop-types';
 import TextView from 'ui-kit/TextView';
 
+const sheetCoverHeight = CARD_HEIGHT * 0.6;
+const hideCardBadgeHeight = 44;
+
 const MenuBottomSheet = props => {
   //This will help us to place the CardView from Top Space
   const headerOccupiedSpace = props.headerOccupiedSpace;
@@ -52,19 +55,16 @@ const MenuBottomSheet = props => {
     return <View style={[styles.listHeader, {height: sheetCoverHeight}]} />;
   };
 
-  const sheetCoverHeight = CARD_HEIGHT * 0.6;
-  const hideCardBadgeHeight = 44;
-
   return (
-    <React.Fragment>
+    <>
       <CardView userInfo={props?.userInfo} />
-      <View
-        style={[
-          styles.listItemContainer,
-          {top: headerOccupiedSpace + sheetCoverHeight + hideCardBadgeHeight},
-        ]}>
+      <>
         <FlatList
           bounces={true}
+          style={[
+            styles.listItemContainer,
+            {top: headerOccupiedSpace + sheetCoverHeight + hideCardBadgeHeight},
+          ]}
           scrollEventThrottle={16}
           showsVerticalScrollIndicator={false}
           data={DEBIT_CARD_MENU_ITEMS}
@@ -72,10 +72,11 @@ const MenuBottomSheet = props => {
           renderItem={renderItem}
           scrollEnabled={true}
         />
-      </View>
-    </React.Fragment>
+      </>
+    </>
   );
 };
+
 MenuBottomSheet.propTypes = {
   userInfo: PropTypes.object,
 };
