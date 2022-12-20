@@ -22,19 +22,6 @@ export const labels = {
   loading: 'Loading...',
 };
 
-export const userInfo = {
-  cardNumberVisible: false,
-  cardNumber: '1234567812345678',
-  cardValidThru: '10/28',
-  cardCVV: '666',
-  nameOnCard: 'Trinadh Koya',
-  availableBalance: '1,000,000',
-  currencyUnits: 'S$',
-  weeklySpendingLimit: -1,
-  weeklySpendingLimitExhausted: -1,
-  id: 1,
-};
-
 export const PRE_SET_VALUES = [
   {id: 1, value: 1000, currency: 'S$'},
   {id: 2, value: 2000, currency: 'S$'},
